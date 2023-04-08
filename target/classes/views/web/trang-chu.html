@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="_csrf" data-th-content="${_csrf.token}" />
+   <meta name="_csrf_header" data-th-content="${_csrf.headerName}" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link type="text/css" rel="stylesheet" th:href="@{/font/fontawesome/css/all.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/base.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/responsive.css}"/>
+   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <title>Trang chủ</title>
+</head>
+<body class="common-home">
+
+  <header th:replace="fragment::header"></header>
+  
+  <section class="awe-section-1" id="awe-section-1">
+        <div class="section-category-slider mt-md-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-9 px-2 px-lg-3 mb-5 order-lg-2">
+                        <div class="policy d-flex justify-content-around" id="header-service-0" style="background-image: none;">
+                            <div class="item-policy d-flex align-items-center">
+                                <a href="javascript:void(0)">
+                                    <img th:src="@{/image/services/policy1-0x0.png}" alt="Miễn phí vận chuyển" class="fa" />
+                                </a>
+                                <div class="info">
+                                    <a href="javascript:void(0)"> Miễn phí vận chuyển</a>
+                                    <p>
+                                        <p>B&aacute;n k&iacute;nh 100 km</p>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="item-policy d-flex align-items-center">
+                                <a href="javascript:void(0)">
+                                    <img th:src="@{/image/services/policy2-0x0.png}" alt="Hỗ trợ 24/7" class="fa" />
+                                </a>
+                                <div class="info">
+                                    <a href="javascript:void(0)">Hỗ trợ 24/7</a>
+                                    <p>
+                                        <p>Hotline:&nbsp;<a href="callto:19001009">0123456789</a></p>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="item-policy d-flex align-items-center">
+                                <a href="javascript:void(0)">
+                                    <img th:src="@{/image/services/policy3-0x0.png}" alt="Giờ làm việc" class="fa" />
+                                </a>
+                                <div class="info">
+                                    <a href="javascript:void(0)"> Giờ làm việc</a>
+                                    <p>
+                                        <p>T2 - T7 Giờ h&agrave;nh ch&iacute;nh</p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $('.header .header-content .header-service').append($('#header-service-0'));
+                        </script>
+                        <div class="home-slider owl-carousel" id="gallery-0" data-margin="0" data-nav="true" data-lg-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-autoplay="true">
+                            <div class="item">
+                                <a href="#" class="clearfix">
+                                    <img th:src="@{/image/Slide/banner 1-1360x577.png}" alt="owl-banner-1" />
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="#" class="clearfix">
+                                    <img th:src="@{/image/Slide/banner 2-1360x577.png}" alt="owl-baner-2" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3 sidebar col-left clearfix">
+                        <aside id="column-left" class="left-column aompliance aside-vetical-menu">
+                            <aside class="blog-aside aside-item sidebar-category module_category  category_custom" id="category_custom-1">
+                                <div class="aside-title text-center text-xl-left">
+                                    <h2 class="title-head">
+                                        <span>Danh mục sản phẩm</span>
+                                    </h2>
+                                </div>
+                                <div class="aside-content">
+                                    <div class="nav-category navbar-toggleable-md">
+                                        <ul class="nav navbar-pills">
+                                            <li th:each="c:${category}" class="nav-item">
+                                                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                                <a th:href="@{'/freshfood/san-pham?id='+${c.id}}" class="nav-link">[[${c.name}]]</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+                        </aside>
+                    </div>
+               </div>
+          </div>
+      </div>
+  </section>
+  
+  <div class="container-fluid">
+      <div class="row">
+         <div class="main w-100" id="content">
+             <section class="awe-section-2" id="service-gallery-1">
+                 <div class="section-banner">
+                        <div class="container">
+                            <h2 class="d-none"></h2>
+                            <div class="banner-slider owl-carousel" data-nav="true" data-lg-items="3" data-md-items="3" data-sm-items="2" data-xs-items="2">
+                              <div class="item">
+                                  <a href="javascript:void(0)" class="clearfix">
+                                      <img th:src="@{/image/banner/banner-1-0x0.png}" />
+                                  </a>
+                              </div>
+                              <div class="item">
+                                   <a href="javascript:void(0)" class="clearfix">
+                                      <img th:src="@{/image/banner/banner-2-0x0.png}" />
+                                   </a>
+                              </div>
+                              <div class="item">
+                                   <a href="javascript:void(0)" class="clearfix">
+                                      <img th:src="@{/image/banner/banner-3-0x0.png}" />
+                                   </a>
+                              </div>
+                          </div>
+                       </div>
+                  </div>
+             </section>
+             <section class="awe-section-3 module-category category-custom" id="category-custom-2">
+                    <div class="section section-collection section-collection-1">
+                       <div class="container">
+                            <div class="collection-border">
+                                <div class="collection-main">
+                                    <div class="row">
+                                         <div class="col-lg-12 col-sm-12">
+                                            <div class="e-tabs not-dqtab ajax-tab-1" data-section="ajax-tab-1">
+                                                <div class="row row-noGutter">
+                                                    <div class="col-sm-12">
+                                                        <div class="content position-relative">
+                                                           <div class="section-title">
+                                                                <h2>Trái cây nhập khẩu</h2>
+                                                            </div>
+                                                            <div>
+                                                                <ul class="tabs tabs-title ajax clearfix">
+                                                                    <li class="tab-link has-content active" data-tab="category_custom20 active" href="#category_custom20" data-toggle="tab">
+                                                                        <span>Hoa quả nhập khẩu</span>
+                                                                    </li>
+                                                                    <li class="tab-link has-content " data-tab="category_custom21" href="#category_custom21" data-toggle="tab">
+                                                                        <span>Rau, củ sạch</span>
+                                                                    </li>
+                                                                    <li class="tab-link has-content " data-tab="category_custom22" href="#category_custom22" data-toggle="tab">
+                                                                        <span>Trái cây tươi</span>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="category-custom20 tab-content active" id="category_custom20">
+                                                                    <div class="product product-view-grid owl-carousel" data-nav="true" data-xl-items="4" data-lg-items="4" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2">
+                                                                        <div th:each="hqnk:${hoaQuaNhapKhau}" class="item">
+                                                                            <div class="product-box">
+                                                                                <div class="product-thumbnail flexbox-grid">
+                                                                                    <a th:href="@{'/freshfood/check?id='+${hqnk.id}}" th:title="${hqnk.name}">
+                                                                                        <img th:src="${hqnk.ProductImagePath}" alt="${hqnk.name}" />
+                                                                                    </a>
+                                                                                    <div class="product-action d-none">
+                                                                                        <form class="form variants form-nut-grid margin-bottom-0">
+                                                                                            <div>
+                                                                                                <a class="btn-buy btn-cart btn left-to add_to_cart" data-toggle="tooltip" title="Mua ngay" th:href="@{'/freshfood/check?id='+${hqnk.id}}">
+                                                                                                    <i class="fas fa-shopping-bag"></i>
+                                                                                                </a>
+                                                                                                <a th:href="@{'/freshfood/check?id='+${hqnk.id}}" data-toggle="tooltip" title="Xem" class="btn-gray btn_view btn right-to">
+                                                                                                    <i class="fas fa-eye"></i>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="product-info text-center">
+                                                                                    <h3 class="product-name">
+                                                                                        <a th:href="@{'/freshfood/check?id='+${hqnk.id}}" th:title="${hqnk.name}">
+                                                                                            <span>[[${hqnk.name}]]</span>
+                                                                                        </a>
+                                                                                    </h3>
+                                                                                    <div class="price-box">
+                                                                                        <div class="special-price">
+                                                                                            <span>[[${hqnk.price}]]</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="category-custom21 tab-content" id="category_custom21">
+                                                                    <div class="product product-view-grid owl-carousel" data-nav="true" data-xl-items="4" data-lg-items="4" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2">
+                                                                        <div th:each="rcs:${rauCuSach}" class="item">
+                                                                            <div class="product-box">
+                                                                                <div class="product-thumbnail flexbox-grid">
+                                                                                    <a th:href="@{'/freshfood/check?id='+${rcs.id}}" th:title="${rcs.name}">
+                                                                                        <img th:src="${rcs.ProductImagePath}" alt="${rcs.name}" />
+                                                                                    </a>
+                                                                                    <div class="product-action d-none">
+                                                                                        <form class="form variants form-nut-grid margin-bottom-0">
+                                                                                            <div>
+                                                                                                <a class="btn-buy btn-cart btn left-to add_to_cart" data-toggle="tooltip" title="Mua ngay" th:href="@{'/freshfood/check?id='+${rcs.id}}">
+                                                                                                    <i class="fas fa-shopping-bag"></i>
+                                                                                                </a>
+                                                                                                <a th:href="@{'/freshfood/check?id='+${rcs.id}}" data-toggle="tooltip" title="Xem" class="btn-gray btn_view btn right-to">
+                                                                                                    <i class="fas fa-eye"></i>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="product-info text-center">
+                                                                                    <h3 class="product-name">
+                                                                                        <a th:href="@{'/freshfood/check?id='+${rcs.id}}" th:title="${rcs.name}">
+                                                                                            <span>[[${rcs.name}]]</span>
+                                                                                        </a>
+                                                                                    </h3>
+                                                                                    <div class="price-box">
+                                                                                        <div class="special-price">
+                                                                                            <span>[[${rcs.price}]]</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="category-custom22 tab-content" id="category_custom22">
+                                                                    <div class="product product-view-grid owl-carousel" data-nav="true" data-xl-items="4" data-lg-items="4" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2">
+                                                                        <div th:each="tct:${traiCayTuoi}" class="item">
+                                                                            <div class="product-box">
+                                                                                <div class="product-thumbnail flexbox-grid">
+                                                                                    <a th:href="@{'/freshfood/check?id='+${tct.id}}" th:title="${tct.name}">
+                                                                                        <img th:src="${tct.ProductImagePath}" alt="${tct.name}" />
+                                                                                    </a>
+                                                                                    <div class="product-action d-none">
+                                                                                        <form class="form variants form-nut-grid margin-bottom-0">
+                                                                                            <div>
+                                                                                                <a class="btn-buy btn-cart btn left-to add_to_cart" data-toggle="tooltip" title="Mua ngay" th:href="@{'/freshfood/check?id='+${tct.id}}">
+                                                                                                    <i class="fas fa-shopping-bag"></i>
+                                                                                                </a>
+                                                                                                <a th:href="@{'/freshfood/check?id='+${tct.id}}" data-toggle="tooltip" title="Xem" class="btn-gray btn_view btn right-to">
+                                                                                                    <i class="fas fa-eye"></i>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="product-info text-center">
+                                                                                    <h3 class="product-name">
+                                                                                        <a th:href="@{'/freshfood/check?id='+${tct.id}}" th:title="${tct.name}">
+                                                                                            <span>[[${tct.name}]]</span>
+                                                                                        </a>
+                                                                                    </h3>
+                                                                                    <div class="price-box">
+                                                                                        <div class="special-price">
+                                                                                            <span>[[${tct.price}]]</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         </div>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+             </section>
+             <section class="awe-section-3 module-category category-custom" id="category-custom-3">
+                    <div class="section section-collection section-collection-1">
+                       <div class="container">
+                            <div class="collection-border">
+                                <div class="collection-main">
+                                    <div class="row">
+                                         <div class="col-lg-12 col-sm-12">
+                                            <div class="e-tabs not-dqtab ajax-tab-1" data-section="ajax-tab-1">
+                                                <div class="row row-noGutter">
+                                                    <div class="col-sm-12">
+                                                        <div class="content position-relative">
+                                                           <div class="section-title">
+                                                                <h2>Thực phẩm sạch</h2>
+                                                            </div>
+                                                            <div>
+                                                                <ul class="tabs tabs-title ajax clearfix">
+                                                                    <li class="tab-link has-content active" data-tab="category_custom30 active" href="#category_custom30" data-toggle="tab">
+                                                                        <span>Hải sản tươi</span>
+                                                                    </li>
+                                                                    <li class="tab-link has-content " data-tab="category_custom31" href="#category_custom31" data-toggle="tab">
+                                                                        <span>Thịt tươi</span>
+                                                                    </li>
+                                                                    <li class="tab-link has-content " data-tab="category_custom32" href="#category_custom32" data-toggle="tab">
+                                                                        <span>Đồ uống</span>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="category-custom30 tab-content active" id="category_custom30">
+                                                                    <div class="product product-view-grid owl-carousel" data-nav="true" data-xl-items="4" data-lg-items="4" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2">
+                                                                        <div th:each="hst:${haiSanTuoi}" class="item">
+                                                                            <div class="product-box">
+                                                                                <div class="product-thumbnail flexbox-grid">
+                                                                                    <a th:href="@{'/freshfood/check?id='+${hst.id}}" th:title="${hst.name}">
+                                                                                        <img th:src="${hst.ProductImagePath}" alt="${hst.name}" />
+                                                                                    </a>
+                                                                                    <div class="product-action d-none">
+                                                                                        <form class="form variants form-nut-grid margin-bottom-0">
+                                                                                            <div>
+                                                                                                <a class="btn-buy btn-cart btn left-to add_to_cart" data-toggle="tooltip" title="Mua ngay" th:href="@{'/freshfood/check?id='+${hst.id}}">
+                                                                                                    <i class="fas fa-shopping-bag"></i>
+                                                                                                </a>
+                                                                                                <a th:href="@{'/freshfood/check?id='+${hst.id}}" data-toggle="tooltip" title="Xem" class="btn-gray btn_view btn right-to">
+                                                                                                    <i class="fas fa-eye"></i>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="product-info text-center">
+                                                                                    <h3 class="product-name">
+                                                                                        <a th:href="@{'/freshfood/check?id='+${hst.id}}" th:title="${hst.name}">
+                                                                                            <span>[[${hst.name}]]</span>
+                                                                                        </a>
+                                                                                    </h3>
+                                                                                    <div class="price-box">
+                                                                                        <div class="special-price">
+                                                                                            <span>[[${hst.price}]]</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="category-custom31 tab-content" id="category_custom31">
+                                                                    <div class="product product-view-grid owl-carousel" data-nav="true" data-xl-items="4" data-lg-items="4" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2">
+                                                                        <div th:each="tt:${thitTuoi}" class="item">
+                                                                            <div class="product-box">
+                                                                                <div class="product-thumbnail flexbox-grid">
+                                                                                    <a th:href="@{'/freshfood/check?id='+${tt.id}}" th:title="${tt.name}">
+                                                                                        <img th:src="${tt.ProductImagePath}" alt="${tt.name}" />
+                                                                                    </a>
+                                                                                    <div class="product-action d-none">
+                                                                                        <form class="form variants form-nut-grid margin-bottom-0">
+                                                                                            <div>
+                                                                                                <a class="btn-buy btn-cart btn left-to add_to_cart" data-toggle="tooltip" title="Mua ngay" th:href="@{'/freshfood/check?id='+${tt.id}}">
+                                                                                                    <i class="fas fa-shopping-bag"></i>
+                                                                                                </a>
+                                                                                                <a th:href="@{'/freshfood/check?id='+${tt.id}}" data-toggle="tooltip" title="Xem" class="btn-gray btn_view btn right-to">
+                                                                                                    <i class="fas fa-eye"></i>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="product-info text-center">
+                                                                                    <h3 class="product-name">
+                                                                                        <a th:href="@{'/freshfood/check?id='+${tt.id}}" th:title="${tt.name}">
+                                                                                            <span>[[${tt.name}]]</span>
+                                                                                        </a>
+                                                                                    </h3>
+                                                                                    <div class="price-box">
+                                                                                        <div class="special-price">
+                                                                                            <span>[[${tt.price}]]</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="category-custom32 tab-content" id="category_custom32">
+                                                                    <div class="product product-view-grid owl-carousel" data-nav="true" data-xl-items="4" data-lg-items="4" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2">
+                                                                        <div th:each="du:${doUong}" class="item">
+                                                                            <div class="product-box">
+                                                                                <div class="product-thumbnail flexbox-grid">
+                                                                                    <a th:href="@{'/freshfood/check?id='+${du.id}}" th:title="${du.name}">
+                                                                                        <img th:src="${du.ProductImagePath}" alt="${du.name}" />
+                                                                                    </a>
+                                                                                    <div class="product-action d-none">
+                                                                                        <form class="form variants form-nut-grid margin-bottom-0">
+                                                                                            <div>
+                                                                                                <a class="btn-buy btn-cart btn left-to add_to_cart" data-toggle="tooltip" title="Mua ngay" th:href="@{'/freshfood/check?id='+${du.id}}">
+                                                                                                    <i class="fas fa-shopping-bag"></i>
+                                                                                                </a>
+                                                                                                <a th:href="@{'/freshfood/check?id='+${du.id}}" data-toggle="tooltip" title="Xem" class="btn-gray btn_view btn right-to">
+                                                                                                    <i class="fas fa-eye"></i>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="product-info text-center">
+                                                                                    <h3 class="product-name">
+                                                                                        <a th:href="@{'/freshfood/check?id='+${du.id}}" th:title="${du.name}">
+                                                                                            <span>[[${du.name}]]</span>
+                                                                                        </a>
+                                                                                    </h3>
+                                                                                    <div class="price-box">
+                                                                                        <div class="special-price">
+                                                                                            <span>[[${du.price}]]</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         </div>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+             </section>
+             <section class="awe-section-2" id="service-gallery-2">
+                    <div class="section-banner">
+                        <div class="container">
+                            <h2 class="d-none"></h2>
+                            <div class="banner-slider owl-carousel" data-nav="true" data-lg-items="2" data-md-items="2" data-sm-items="2" data-xs-items="2">
+                                <div class="item">
+                                    <a href="javascript:void(0)" class="clearfix">
+                                        <img th:src="@{/image/banner/bn1-555x160.png}" alt="" />
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="javascript:void(0)" class="clearfix">
+                                        <img th:src="@{/image/banner/bn2-555x160.jpg}" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+             </section>
+             <section class="awe-section-10 news-module news-custom" id="news-custom-0">
+                    <div class="section section-blog">
+                        <div class="container">
+                            <div class="section-title text-center">
+                                <h2>
+                                    <a href="javascript:void(0)">Tin tức</a>
+                                </h2>
+                                <p></p>
+                            </div>
+                            <div class="section-content">
+                                <div class="blog-slider owl-carousel" data-nav="true" data-lg-items="3" data-md-items="3" data-sm-items="2" data-xs-items="2">
+                                    <article class="blog-item text-center">
+                                        <div>
+                                            <div class="blog-item-thumbnail">
+                                                <a href="tai-sao-cherry-tai-viet-nam-lai-co-gia-thanh-cao-hon-rat-nhieu-cac-loai-trai-cay-nhap-khau.html">
+                                                    <img th:src="@{/image/tin-tuc/blog3-358x204.jpg}" alt="Tại sao Cherry tại Việt Nam lại có giá thành cao hơn rất nhiều các loại trái cây nhập khẩu" />
+                                                </a>
+                                            </div>
+                                            <div class="blog-item-info m-4">
+                                                <h3 class="blog-item-name">
+                                                    <a href="tai-sao-cherry-tai-viet-nam-lai-co-gia-thanh-cao-hon-rat-nhieu-cac-loai-trai-cay-nhap-khau.html">
+                                                        <span>Tại sao Cherry tại Việt Nam lại có giá thành cao hơn rất nhiều các loại trái cây nhập khẩu</span>
+                                                    </a>
+                                                </h3>
+                                                <meta content="05/09/2018" />
+                                                <p class="blog-item-summary">Cherry là sản phẩm có giá thành khá đắt nhưng lại là lựa chọn hàng đầu của nhiều người Việt Nam khi đem đi biếu tặng và sử dụng trong gia đình. Đa số&#8230;</p>
+                                                <a class="btn" href="tai-sao-cherry-tai-viet-nam-lai-co-gia-thanh-cao-hon-rat-nhieu-cac-loai-trai-cay-nhap-khau.html">Xem thêm</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="blog-item text-center">
+                                        <div>
+                                            <div class="blog-item-thumbnail">
+                                                <a href="nhap-khau-rau-qua-vuot-moc-1-ty-usd-thai-lan-chiem-60-thi-phan.html">
+                                                    <img th:src="@{/image/tin-tuc/blog2-358x204.jpg}" alt="Nhập khẩu rau quả vượt mốc 1 tỷ USD, Thái Lan chiếm 60% thị phần" />
+                                                </a>
+                                            </div>
+                                            <div class="blog-item-info m-4">
+                                                <h3 class="blog-item-name">
+                                                    <a href="nhap-khau-rau-qua-vuot-moc-1-ty-usd-thai-lan-chiem-60-thi-phan.html">
+                                                        <span>Nhập khẩu rau quả vượt mốc 1 tỷ USD, Thái Lan chiếm 60% thị phần</span>
+                                                    </a>
+                                                </h3>
+                                                <meta content="04/09/2018" />
+                                                <p class="blog-item-summary">Theo báo cáo từ Bộ NN&PTNT, giá trị xuất khẩu hàng rau quả tháng 9 năm 2017 ước đạt 294 triệu USD, đưa giá trị xuất khẩu hàng rau quả 9 tháng đầu năm&#8230;</p>
+                                                <a class="btn" href="nhap-khau-rau-qua-vuot-moc-1-ty-usd-thai-lan-chiem-60-thi-phan.html">Xem thêm</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="blog-item text-center">
+                                        <div>
+                                            <div class="blog-item-thumbnail">
+                                                <a href="nhung-loai-trai-cay-nhat-dat-nhu-vang-rong-do-bo-ve-viet-nam.html">
+                                                    <img th:src="@{/image/tin-tuc/blog1-358x204.jpg}" />
+                                                </a>
+                                            </div>
+                                            <div class="blog-item-info m-4">
+                                                <h3 class="blog-item-name">
+                                                    <a href="nhung-loai-trai-cay-nhat-dat-nhu-vang-rong-do-bo-ve-viet-nam.html">
+                                                        <span>Những loại trái cây Nhật đắt như vàng ròng đổ bộ về Việt Nam</span>
+                                                    </a>
+                                                </h3>
+                                                <meta content="02/06/2017" />
+                                                <p class="blog-item-summary">Nhật Bản là đất nước có nhiều loại hoa quả có chất lượng thuộc hàng ngon nhất thế giới nhưng cũng vô cùng đắt đỏ. Đáng chú ý, nhiều loại quả do nông dân&#8230;</p>
+                                                <a class="btn" href="nhung-loai-trai-cay-nhat-dat-nhu-vang-rong-do-bo-ve-viet-nam.html">Xem thêm</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="blog-item text-center">
+                                        <div>
+                                            <div class="blog-item-thumbnail">
+                                                <a href="thuc-pham-huu-co-la-gi.html">
+                                                    <img th:src="@{/image/tin-tuc/organic-food-358x204.jpg}" />
+                                                </a>
+                                            </div>
+                                            <div class="blog-item-info m-4">
+                                                <h3 class="blog-item-name">
+                                                    <a href="thuc-pham-huu-co-la-gi.html">
+                                                        <span>Thực phẩm hữu cơ là gì?</span>
+                                                    </a>
+                                                </h3>
+                                                <meta content="13/04/2017" />
+                                                <p class="blog-item-summary">Theo J.I Rodale – cha đẻ của ngành trồng trọt hữu cơ ở Mỹ thì Thực phẩm hữu cơ là nông sản không dùng thuốc trừ sâu và phân bón hóa học. Xuất phát từ&#8230;</p>
+                                                <a class="btn" href="thuc-pham-huu-co-la-gi.html">Xem thêm</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="awe-section-11 feedback" id="feedback-0">
+                    <div class="section section_testimonial">
+                        <div class="container">
+                            <div class="section-title text-center">
+                                <h2>
+                                    <a href="javascript:void(0)">Phản hồi của khách hàng</a>
+                                </h2>
+                                <p>Phản hồi của những khách hàng đã và đang sử dụng sản phẩm trong suốt những năm qua</p>
+                            </div>
+                            <div class="section-content">
+                                <div class="testimonial-slider owl-carousel" data-nav="true" data-lg-items="3" data-md-items="3" data-sm-items="2" data-xs-items="2">
+                                    <div class="testimonial-item text-center p-4 mb-5">
+                                        <div class="image-avata">
+                                            <img th:src="@{/image/feedback/kh4-250x250.png}" alt="Mr. Thành">
+                                        </div>
+                                        <h4 class="name">Nhân viên văn phòng - Mr. Thành</h4>
+                                        <div class="designation m-0">Là một người khá kỹ tính, tôi luôn luôn lựa chọn những thực phẩm sạch nhất. Và đây là nơi tôi đặt trọng niềm tin </div>
+                                    </div>
+                                    <div class="testimonial-item text-center p-4 mb-5">
+                                        <div class="image-avata">
+                                            <img th:src="@{/image/feedback/kh5-250x250.jpg}" alt="Thu Phương">
+                                        </div>
+                                        <h4 class="name">Nhân viên - Thu Phương</h4>
+                                        <div class="designation m-0">Tôi rất tin tưởng mua thực phẩm ở FreshFood, mỗi lần công ty có liên hoan tôi lại đặt hoa quả ở đây, sẽ luôn ủng hộ FreshFood dài dài</div>
+                                    </div>
+                                    <div class="testimonial-item text-center p-4 mb-5">
+                                        <div class="image-avata">
+                                            <img th:src="@{/image/feedback/kh2-250x250.jpg}" alt="Hoàng Yến">
+                                        </div>
+                                        <h4 class="name">Nội trợ - Hoàng Yến</h4>
+                                        <div class="designation m-0">Đối với người làm nội trợ tôi thì việc thực phẩm xuất xứ rõ nguồn gốc, đảm bảo an toàn thực phẩm rất quan trọng vì vậy tôi rất tin tưởng ở FreshFood</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>  
+                <section th:replace="fragment::footer-nav"></section> 
+          </div>
+      </div>
+  </div>
+    
+  <footer th:replace="fragment::footer"></footer>
+    
+   <script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/all.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/index.js}"></script>
+</body>
+</html>

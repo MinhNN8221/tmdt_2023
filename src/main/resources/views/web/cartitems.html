@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+   <ul id="cart-slidebar" class="mini-products-list count_li textcenter">
+      <li th:if = "${cartitems.size() == 0}" class="no-item"> 
+           <p class="text-center">Giỏ hàng của bạn trống!</p>
+      </li>
+      <li th:if = "${cartitems.size() > 0}" class="list-item-cart">
+          <ul>
+              <li th:each="citem : ${cartitems}" class="item product-id-123">
+                  <div class="border_list">
+                      <a class="product-image" title="Rau">
+                          <img th:src="${citem.product.ProductExtraImagePath1}" width="100"/>
+                      </a>
+                      <div class="detail-item">
+                          <div class="product-details">
+                              <p class="product-name">
+                                  <a href="#" th:title="${citem.product.name}">[[${citem.product.name}]]</a>
+                              </p>
+                          </div>
+                          <div class="product-details-bottom">
+                              <span class="price">[[${citem.product.price}]]</span>
+                              <a th:item-id="${citem.id}" onclick= "del(this)" title="Xóa" class="remove-item-cart fa">x</a>
+                              <div class="quantity-select qty_drop_cart">
+                                  <span class="input-text number-slidebar">x [[${citem.quantity}]]</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+      </li>
+      <li th:if = "${cartitems.size() > 0}" class = "pd">
+          <div class="top-subtotal">
+              <div class="clearfix">
+                  Thành tiền: <span class="price ">[[${tongtien}]]</span>
+              </div>
+              <div class="clearfix">
+                  Tông tiền: <span class="price">[[${tongtien}]]</span>
+              </div>
+          </div>
+      </li>
+      <li th:if = "${cartitems.size() > 0}" class = "text-center pd right_ct">
+          <a class="btn btn-primary" th:href="@{/freshfood/checkout}">
+             <span>Giỏ hàng</span>
+          </a>
+      </li>
+   </ul>
+   
+</body>
+</html>

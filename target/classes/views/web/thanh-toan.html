@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+   <meta charset="UTF-8">
+   <meta name="_csrf" data-th-content="${_csrf.token}" />
+   <meta name="_csrf_header" data-th-content="${_csrf.headerName}" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link type="text/css" rel="stylesheet" th:href="@{/font/fontawesome/css/all.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/base.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/responsive.css}"/>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <title>Thanh toán</title>
+</head>
+<body>
+   <header th:replace = "fragment::header"></header>
+   
+   <section class="bread_crumb py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a th:href="@{/freshfood/trang-chu}"><span ><i class="fa fa-home"></i> Trang chủ</span></a>
+                            <span><i class="fa fa-angle-right"></i></span>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"> <span>Giỏ hàng</span></a>
+                            <span><i class="fa fa-angle-right"></i></span>
+                        </li>
+                        <li>
+                            <strong>Thanh toán</strong>              
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <section class="page mb-4"> 
+            <div class="policy d-flex justify-content-around" id="header-service-0" style="background-image: none;">
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy1-0x0.png}" alt="Miễn phí vận chuyển" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)"> Miễn phí vận chuyển</a>
+                        <p>
+                            <p>B&aacute;n k&iacute;nh 100 km</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy2-0x0.png}" alt="Hỗ trợ 24/7" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)">Hỗ trợ 24/7</a>
+                        <p>
+                            <p>Hotline:&nbsp;<a href="callto:19001009">0123456789</a></p>
+                        </p>
+                    </div>
+                </div>
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy3-0x0.png}" alt="Giờ làm việc" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)"> Giờ làm việc</a>
+                        <p>
+                            <p>T2 - T7 Giờ h&agrave;nh ch&iacute;nh</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $('.header .header-content .header-service').append($('#header-service-0'));
+            </script>
+            <div class="container">
+                <form method="post" enctype="multipart/form-data" class="form-horizontal" id="checkout-form">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-8">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i> Địa chỉ nhận hàng                                   
+                                    </h5>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group required row">
+                                        <label class="control-label col-sm-12 col-md-2" for="input-firstname">Tên đầy đủ</label>
+                                        <div class="col-sm-12 col-md-10">
+                                            <input type="text" name="firstname" id="input-firstname" value="" placeholder="Ví dụ: Nguyễn Văn A" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group required row">
+                                                <label class="control-label col-sm-12 col-md-4" for="input-email">Email</label>
+                                                <div class="col-sm-12 col-md-8">
+                                                    <input type="email" name="email" id="input-email" value="" placeholder="contact@yourdomain.com" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group required row">
+                                                <label class="control-label col-sm-12 col-md-4" for="input-telephone">Điện thoại</label>
+                                                <div class="col-sm-12 col-md-8">
+                                                    <input type="text" name="telephone" id="input-telephone" value="" placeholder="Ví dụ: 01234567890" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                             <div class="form-group required row">
+                                                <label class="control-label col-sm-12 col-md-4" for="input-countryid">Quốc gia</label>
+                                                <div class="col-sm-12 col-md-8">
+                                                    <select name="country_id" id="input-countryid" class="form-control">
+                                                        <option value="">--Chọn quốc gia--</option>
+                                                        <option th:each="i:${country}" th:value="${i.id}">[[${i.name}]]</option>
+                                                    </select>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group required row">
+                                                <label class="control-label col-sm-12 col-md-4" for="input-zoneid" id="label-zone">Tỉnh/TP</label>
+                                                <div class="col-sm-12 col-md-8">
+                                                    <span id="load-ajax-zone">
+                                                        <select name="zone_id" id="input-zoneid" class="form-control">
+                                                          <option value="">--Chọn tỉnh thành--</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group required row">
+                                                <label class="control-label col-sm-12 col-md-4" for="input-address">Quận / Huyện</label>
+                                                <div class="col-sm-12 col-md-8">
+                                                    <input type="text" name="ward_id" id="input-wardid" placeholder="Ví dụ: Q. Cầu Giấy" class="form-control"></select>                                       
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group required row">
+                                                <label class="control-label col-sm-12 col-md-4" for="input-address">Địa chỉ chi tiết</label>
+                                                <div class="col-sm-12 col-md-8">
+                                                    <input type="text" name="address_1" value="" id="input-address" placeholder="Ví dụ: Số 247, Cầu Giấy, Q. Cầu Giấy" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-2" for="input-zoneid" id="label-zone">Lời nhắn</label>
+                                        <div class="col-sm-12 col-md-10">
+                                            <textarea name="comment" id="input-comment" rows="3" class="form-control" placeholder="Ví dụ: Chuyển hàng ngoài giờ hành chính"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-sm-12 col-lg-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <strong>Đơn hàng</strong> <span id="itemscount"></span>
+                                    </h5>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="adr-oms table table_order_items">
+                                        <tbody id="orderItem">
+                                            
+                                        </tbody>
+                                    </table>
+                                    <div style="border-top:1px solid #ddd" class="text-center pt-3 pb-3">
+                                         <button type="button" class="btn btn-primary" data-toggle="tooltip" title data-original-title="Refesh" onclick="loadcartitems()">Refresh</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default" id="ajax-load-total">
+                                <div class="panel-body">
+                                    <table class="adr-oms table">
+                                        <tbody class="orderSummary">
+                                           
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="text-center mb-4 d-flex justify-content-between">
+                                <a class="pull-left" href="/freshfood/checkout" title="Quay lại giỏ hàng">
+                                    <i class="fa fa-mail-reply-all" aria-hidden="true"></i> Quay lại giỏ hàng                                
+                                </a>
+                                <button class="btn btn-primary pull-right" type="button" id="submit_form_button"
+                                        onclick="addbill()">Đặt hàng
+                                </button>
+                            </div>
+                         </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+        <section th:replace="fragment::footer-nav"></section>
+    </section>
+    
+    <footer th:replace="fragment::footer"></footer>
+   
+   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+   <script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script> 
+   <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/all.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/index.js}"></script>
+   <script type="text/javascript">
+   $(function(){
+	   $('select[name="country_id"]').change(function(){
+		   $.ajax({
+			   url: '/freshfood/api/city?id='+this.value,
+       		   dataType  : 'json',
+       		   beforeSend: function () {
+                   $("select[name='country_id']").after("<i class='fa fa-circle-o-notch fa-spin'></i>");
+               },
+               complete: function () {
+                   $(".fa-spin").remove();
+               },
+               success: function(json){
+               	html='<option value="">---Trống---</option>';
+               	$.each(json, function(index, c){
+               		html += '<option value="'+c.id+'">'+c.name+'</option>';
+               		// c là tên của mảng truyền trả về trong api
+               	});
+               	$('select[name="zone_id"]').html(html);
+               },
+               error: function(){
+               	alert("không tìm đc city !")
+               }
+		   });
+		   
+	   });
+	   
+       var $valid = $("#checkout-form");
+       $.validator.addMethod("phone", function(value, element){
+          return value.length >=10 && value.length <= 11;
+       }, "Số điện thoại ko đúng");
+       if ($valid.length){
+           $valid.validate({
+               rules:{
+                   firstname: {
+                       required: true
+                       // lettersonly: true,
+                       // whiteSpace: true
+                   },
+                   email:{
+                       required: true,
+                       email: true
+                   },
+                   telephone:{
+                       required: true,
+                       phone: true,
+                       number:true
+                   },
+                   address_1:{
+                       required: true
+                   },
+                   country_id:{
+                       required: true
+                   }
+               },
+               messages:{
+                   firstname:{
+                       required: 'Bắt buộc'
+                       // letterSpacing: 'Ko đc nhập số'
+                       // lettersonly: 'Ko đc nhập số'
+                   },
+                   email:{
+                       required:'Bắt buộc',
+                       email: 'Email ko hợp lệ'
+                   },
+                   telephone:{
+                       required: 'Bắt buộc',
+                       number: 'Chỉ nhập số',
+                   },
+                   address_1:{
+                       required: 'Bắt buộc'
+                   },
+                   country_id:{
+                       required: 'Bắt buộc'
+                   }
+               }
+           });
+       }
+       
+	   loadcartitems();
+
+   });
+   
+   function loadcartitems(){
+	   $.ajax({
+		   url: '/freshfood/cart/all',
+		   type: 'get',
+		   datatype: 'json',
+		   success: function(json){
+			   let finalprice = 0;
+			   let table = '';
+			   for(let i = 0;i<json.length; i++){
+				   finalprice += Number(json[i]['totalprice']);
+				   var html = '<tr class="group-type-1 item-child-0">'+
+				       '<td>'+
+				          '<div class = "row">'+
+				               '<div class="table_order_items-cell-thumbnail col-sm-12 col-md-6">'+
+				                   '<div class="thumbnail">'+
+				                       '<a target="_blank" rel="noopener" href="/freshfood/check?id='+json[i]['proid']+'" title="'+json[i]['name']+'">'+
+				                           '<img src="'+json[i]['mainimg']+'" alt="'+json[i]['name']+'" width="84" />'
+				                       +'</a>'
+				                   +'</div>'
+				               +'</div>'
+				               +'<div class="col-sm-12 col-md-6">'+
+				                     '<div class="table_order_items-cell-detail">'+
+				                         '<div class="table_order_items-cell-title">'+
+				                              '<div class="table_order_items_product_name mb-3">'+
+				                                   '<a target="_blank" rel="noopener" href="/freshfood/check?id='+json[i]['proid']+'" title="'+json[i]['name']+'">'+
+				                                        '<span class="title" style="font-weight: 600;">'+json[i]['name']+'</span>'
+				                                   +'</a>'
+				                              +'</div>'
+				                         +'</div>'
+				                     +'</div>'
+				                     +'<div class="table_order_items-cell-price">'+
+				                         '<div class="tt-price">'+json[i]['price']+'</div>'+
+				                         '<div class="quantity">x'+json[i]['quantity']+'</div>'+
+				                         '<div class="tt-price">'+json[i]['totalprice']+'</div>'
+				                     +'</div>'
+				               +'</div>'
+				          +'</div>'
+				       +'</td>'
+				   +'</tr>';
+				   table+=html; 
+			   }
+			   $('tbody#orderItem').html(table);
+			   $('span#itemscount').html('('+json.length+' sản phẩm)');
+			   var totalpricetable = '<tr class="row-total-amount">'+
+                                           '<td class="text-left">Thành tiền</td>'+
+                                           '<td class="text-right">'+
+                                               '<strong class="">'+finalprice+'</strong>'
+                                           +'</td>'
+                                     +'</tr>'+
+                                     '<tr class="row-total-amount">'+
+                                         '<td class="text-left">Phí vận chuyển Toàn Quốc</td>'+
+                                         '<td class="text-right">'+
+                                             '<strong class="">30000</strong>'
+                                         +'</td>'
+                                     +'</tr>'+
+                                     '<tr class="row-total-amount">'+
+                                          '<td class="text-left">Tổng số</td>'+
+                                          '<td class="text-right">'+
+                                               '<strong class="text-danger">'+(finalprice+30000)+'</strong>'
+                                          +'</td>'
+                                     +'</tr>';
+                $('tbody.orderSummary').html(totalpricetable);
+		   },
+		   error: function(xhr, ajaxOptions, thrownError){
+			   alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		   }
+	   });
+   }
+   
+   function addbill(){
+       if($("#checkout-form").valid() == true){
+    	   var name = "[[${_csrf.headerName}]]";
+		   var token = "[[${_csrf.token}]]";
+           var formData = $('#checkout-form').serializeArray();
+           var data = {};
+           $.each(formData, function (i, v) {
+	             data[""+v.name+""] = v.value;
+	       });
+           $.ajax({
+  	            url: '/freshfood/bill/add',
+  	            type: 'POST',
+  	            contentType: 'application/json',
+  	            data: JSON.stringify(data),
+  	            beforeSend: function(xhr){
+    			    xhr.setRequestHeader(name,token);
+    		    },
+  	            success: function (json) {
+  	            	alert("Đặt hàng thành công, chúng tôi sẽ liên hệ với bạn sau :)");
+  	            },
+  	            error: function (xhr, ajaxOptions, thrownError) {
+  	            	 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+  	            }
+  	        });
+       }else{
+    	   $('.alert').remove();
+		   $('.breadcrumb').after('<div class="mt-3 alert alert-danger"><strong>Vui lòng điền đầy đủ thông tin !</strong></div>');
+    	   $('html, body').animate({scrollTop: 0}, 'slow');
+       }
+   }
+   </script>
+</body>
+</html>

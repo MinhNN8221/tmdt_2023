@@ -1,0 +1,172 @@
+/*html {
+    font-size: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: linhfont;
+}
+
+
+ HEADER 
+
+
+/*MEDIA PART
+
+#media_contact {
+    height: 1.8rem;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+#media-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: fit-content;
+    transform: translateX(220%);
+}
+
+#media-icon .header-icon-img {
+    padding: 0 0.8rem;
+    border-right: 1px solid darkgrey;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#media-icon .header-icon-img .phone {
+    padding-left: .5rem;
+}
+
+#media-icon .header-icon-img .phone#number {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+#media-icon .header-icon-img a {
+    color: #707070;
+    font-size: 1rem;
+}
+
+#media-icon .header-icon-img a:hover {
+    color: lime;
+}
+
+
+/*MEDIA PART*/
+
+
+/*LOGO PART
+
+#logo-part {
+    padding-left: 5.4rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+
+#logo-img {
+    margin-right: 7.8rem;
+    width: 8rem;
+}
+
+#logo-img img {
+    width: 100%;
+}
+
+#search-box {
+    height: 2.25rem;
+    margin-right: 2.8rem;
+}
+
+#search-box input {
+    width: 22rem;
+    height: 100%;
+    border: lightgrey 1px solid;
+}
+
+#search-box input:focus {
+    outline: none;
+    border: 1px solid lime;
+}
+
+#search-icon {
+    padding: .5rem;
+    border: 1px solid lightgrey;
+    border-left: none;
+}
+
+#logo-part .service-img {
+    padding: 1rem;
+}
+
+#logo-part .service-img {
+    width: 6rem;
+}
+
+#logo-part .service-img img {
+    width: 100%;
+}
+
+#logo-part .service {
+    width: 15rem;
+    height: 3.3rem;
+    margin-right: 1.25rem
+}
+
+#logo-part .service:nth-child(4) {
+    width: 18rem;
+    margin: 0;
+}
+
+#logo-part .service p {
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: light;
+    margin: 0;
+    color: grey;
+}
+
+
+/*LOGO PART*/
+
+
+/* HEADER */
+
+
+/*RESPONSIVE*/
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: linhfont;
+}
+
+@media screen and (min-width:200px) {
+    html {
+        font-size: 10px;
+    }
+    #media_contact {
+        height: 2em;
+        width: 100%;
+        background-color: #f5f5f5;
+    }
+}
+@media(max-width: 500px){ /* từ 500px trở lên sẽ xh*/
+#linh{ 
+     width: 50px;
+     height: 50px;
+     background:red
+     }
+}
+@media(min-width: 500px){ /* từ 500px trở lên sẽ xh*/
+   #linh{
+     width: 50px;
+     height: 50px;
+     background: aqua
+     }
+}
+/*RESPONSIVE*/

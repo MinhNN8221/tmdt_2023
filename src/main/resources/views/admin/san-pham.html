@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <meta charset="utf-8" />
+   <meta name="description" content="overview &amp; stats" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/assets/font-awesome/4.2.0/css/font-awesome.min.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/font/fontawesome/css/all.css}"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    
+	<link rel="stylesheet" th:href="@{/assets/fonts/fonts.googleapis.com.css}" />
+
+	<link rel="stylesheet" th:href="@{/assets/css/ace.min.css}" class="ace-main-stylesheet" id="main-ace-style" />
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/responsive.css}" rel="stylesheet" />
+   
+	<!-- ace settings handler -->
+	<script th:src="@{/assets/js/ace-extra.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.2.1.1.min.js}"></script>
+	
+   <title>Sản phầm Admin</title>
+</head>
+<body class = "no-skin">
+  <div th:replace="fragment-admin::navbar"></div> 
+  
+  <div class="main-container" id="main-container">
+      <script type="text/javascript">
+		  try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+	  </script>
+	  <div th:replace="fragment-admin::sidebar"></div> 
+	  <div class="main-content">
+		   <div class="main-content-inner">
+		       <div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a th:href="@{/freshfood/admin/trang-chu}">Freshfood</a>
+							</li>
+							<li class="active">Sản phẩm</li>
+						</ul><!-- /.breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+				  </div>
+				  
+			      <div class="text-center">
+                         <div style="margin-top: 20px; margin-bottom: 20px">
+                            <a th:href="@{/freshfood/admin/them-moi}" style="border-radius: 15px" class=" btn btn-success">Thêm sản phẩm</a>
+                         </div>
+                  </div>
+                  
+				  <section class="product-view product-view-list container">
+                      <div class="row list-products product-grid">
+                                     
+                            <div th:each="pro:${productList}" class="col-sm-4 col-md-3">
+                                 <div class="product-box">
+                                       <div class="product-thumbnail flexbox-grid">
+                                            <a href="kiwwi-xanh.html" th:title="${pro.name}">
+                                                <img th:src="${pro.ProductImagePath}" th:alt="${pro.name}" />
+                                             </a>
+                                             <div class="product-action d-none">
+                                                  <form class="form variants form-nut-grid margin-bottom-0">
+                                                       <div>
+                                                          <a class="btn-buy btn btn-cart left-to add_to_cart" data-toggle="tooltip" title="Chỉnh sửa" th:href="@{'/freshfood/admin/them-moi?id='+${pro.id}}">
+                                                             <i style="color:black" class="fas fa-edit"></i>
+                                                          </a>
+                                                           <a onclick = "xoa(this)" th:proid= "${pro.id}"  data-toggle="tooltip" title="Xóa" class="btn_view btn right-to">
+                                                              <i style="color:black" class="fas fa-trash"></i>
+                                                           </a>
+                                                       </div>
+                                                  </form>
+                                             </div>
+                                        </div>
+                                        <div class="product-info text-center">
+                                             <h3 class="product-name">
+                                                  <a href="kiwi-xanh.html" th:title="${pro.name}">
+                                                      <span>[[${pro.name}]]</span>
+                                                  </a>
+                                              </h3>
+                                              <div class="price-box">
+                                                    <div class="special-price">
+                                                        <span>[[${pro.price}]]</span>
+                                                    </div>
+                                              </div>
+                                        </div>
+                                   </div>
+                             </div>
+                      </div>
+                      <div th:if="${totalPages > 1}" class="text-center">
+                           <ul class="pagination justify-content-center">
+                                <li th:if="${currentPage > 1}" class="page-item page-move"><a class="page-link" th:href = "@{'/freshfood/admin/san-pham?page=1'+${search != null ? '&search='+search : ''}}">|<</a></li>
+                                <li th:if="${currentPage > 1}" class="page-item page-move"><a class="page-link" th:href = "@{'/freshfood/admin/san-pham?page='+${currentPage-1}+${search != null ? '&search='+search : ''}}"><</a></li>
+                                <li th:each="i : ${#numbers.sequence(1,totalPages)}" th:class="${currentPage == i? 'page-item active' : 'page-item'}"><a class="page-link" th:href = "@{'/freshfood/admin/san-pham?page='+${i}+${search != null ? '&search='+search : ''}}">[[${i}]]</a></li>
+                                <li th:if="${currentPage < totalPages}" class="page-item page-move"><a class="page-link" th:href = "@{'/freshfood/admin/san-pham?page='+${currentPage+1}+${search != null ? '&search='+search : ''}}">></a></li>
+                                <li th:if="${currentPage < totalPages}" class="page-item page-move"><a class="page-link" th:href = "@{'/freshfood/admin/san-pham?page='+${totalPages}+${search != null ? '&search='+search : ''}}">>|</a></li>
+                           </ul>
+                      </div>
+                      
+                  </section>
+					  
+		   </div>
+	  </div>
+  </div>
+		
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+ 
+		<script th:src="@{/assets/js/jquery-ui.custom.min.js}"></script>
+		<script th:src="@{/assets/js/jquery.ui.touch-punch.min.js}"></script>
+		<script th:src="@{/assets/js/jquery.easypiechart.min.js}"></script>
+		<script th:src="@{/assets/js/jquery.sparkline.min.js}"></script>
+		<script th:src="@{/assets/js/jquery.flot.min.js}"></script>
+		<script th:src="@{/assets/js/jquery.flot.pie.min.js}"></script>
+		<script th:src="@{/assets/js/jquery.flot.resize.min.js}"></script>
+
+		<script th:src="@{/assets/js/ace-elements.min.js}"></script>
+		<script th:src="@{/assets/js/ace.min.js}"></script>
+		<script>
+		   function xoa(element){
+			   var name = "[[${_csrf.headerName}]]";
+			   var token = "[[${_csrf.token}]]";
+			   $.ajax({
+				   url : '/freshfood/product/xoa/'+$(element).attr("proid"),
+				   type : 'delete',
+				   dataType: 'json',
+				   beforeSend: function(xhr){
+			            xhr.setRequestHeader(name, token);
+		           },
+		           success: function(json){
+			              alert("Bạn đã xóa sản phẩm có id: "+json);
+			              window.location = "/freshfood/admin/san-pham";
+		           },
+		           error: function(){
+			           alert("không thành công !");
+		           }
+			   });
+		   }
+		</script>
+</body>
+</html>

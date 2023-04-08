@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="UTF-8" />
+   <meta name="description" content="overview &amp; stats" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/assets/font-awesome/4.2.0/css/font-awesome.min.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/font/fontawesome/css/all.css}"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    
+	<link rel="stylesheet" th:href="@{/assets/fonts/fonts.googleapis.com.css}" />
+
+	<link rel="stylesheet" th:href="@{/assets/css/ace.min.css}" class="ace-main-stylesheet" id="main-ace-style" />
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/responsive.css}" rel="stylesheet" />
+   
+	<!-- ace settings handler -->
+	<script th:src="@{/assets/js/ace-extra.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.2.1.1.min.js}"></script>
+	
+   <title>Chi tiết đơn hàng ADMIN</title>
+</head>
+<body class="no-skin">
+    <div th:replace="fragment-admin::navbar"></div> 
+    
+    <div class="main-container" id="main-container">
+        <script type="text/javascript">
+		    try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+	    </script>
+	    <div th:replace="fragment-admin::sidebar"></div> 
+	     <div class="main-content">
+		     <div class="main-content-inner">
+		           <div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a th:href="@{/freshfood/admin/trang-chu}">Freshfood</a>
+							</li>
+							<li class="active">ID Đơn hàng: [[${bill.id}]] </li>
+						</ul><!-- /.breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+				  </div>
+				  
+				  <div style="padding: 20px 50px" class="bill-detail-content">
+				       <div style="font-size: 18px; margin-bottom: 10px">
+				           <b>Mã hóa đơn: </b><spna>[[${bill.id}]]</spna>
+				       </div>
+				       <div style="font-size: 18px; margin-bottom: 10px">
+				           <b>Tên khách hàng: </b><spna>[[${bill.fullname}]]</spna>
+				       </div>
+				        <div style="font-size: 18px; margin-bottom: 10px">
+				           <b>Số điện thoại: </b><span>[[${bill.telephone}]]</span>
+				       </div>
+				        <div style="font-size: 18px; margin-bottom: 10px">
+				           <b>Email: </b><span>[[${bill.email}]]</span>
+				       </div>
+				       <div style="font-size: 18px; margin-bottom: 10px">
+				           <b>Quốc gia: </b><span>[[${bill.country}]]</span>
+				       </div>
+				       <div style="font-size: 18px; margin-bottom: 10px">
+				           <b>Tỉnh/Thành phố: </b><span>[[${bill.province}]]</span>
+				       </div>
+				        <div style="font-size: 18px; margin-bottom: 10px">
+				           <b>Địa chỉ chi tiết: </b><span>[[${bill.shipaddress}]]</span>
+				       </div>
+				       <div style="font-size: 18px; margin-bottom: 10px">
+				           <b>Thời gian đặt hàng: </b><spna>[[${bill.create_time}]]</spna>
+				       </div>
+				       
+				       <div class="table-responsive table-cart-content">
+                        <table id="bill-table" class="table table-bordered">
+                               <thead>
+                                   <tr>
+                                      <td class="text-center"><strong>Ảnh</strong></td>
+                                      <td class="text-center"><strong>Sản phẩm</strong></td>
+                                      <td class="text-center"><strong>Đơn giá</strong></td>
+                                      <td class="text-center"><strong>Số lượng</strong></td>
+                                      <td class="text-center"><strong>Tổng giá</strong></td>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                         
+                               </tbody>
+                        </table>
+                   </div>
+                    <div class="row">
+                         <div class="col-sm-12 col-lg-8"></div>
+                         <div class="col-sm-12 col-lg-4 ">
+                             <table id="bill-price" class="table table-bordered">
+                                     
+                             </table>
+                         </div>
+                    </div>
+				  </div>
+		     </div>
+	   </div>
+	</div>
+	
+	  <script type="text/javascript">
+		window.jQuery || document.write("<script src='assets/js/jquery.min.js'>"+"<"+"/script>");
+    </script>
+	<script type="text/javascript">
+		if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+ 
+	<script th:src="@{/assets/js/jquery-ui.custom.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.ui.touch-punch.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.easypiechart.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.sparkline.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.flot.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.flot.pie.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.flot.resize.min.js}"></script>
+
+	<script th:src="@{/assets/js/ace-elements.min.js}"></script>
+	<script th:src="@{/assets/js/ace.min.js}"></script>
+	
+	<script type = "text/javascript">
+       $(document).ready(function(){
+    	   loadbillitems();
+       });
+       function loadbillitems(){
+    	   var billid = "[[${bill.id}]]"
+    	   $.ajax({
+    		   url: '/freshfood/billitem/'+billid,
+    		   type: 'get',
+    		   datatype: 'json',
+    	       success: function(json){
+    	    	   let finalprice = 0;
+    			   let table = '';
+    			   for(let i = 0;i<json.length; i++){
+    				   finalprice += Number(json[i]['tonggia']);
+    				   var html = '<tr>'+
+			           '<td class="text-center">'+
+			                '<img src="'+json[i]['image']+'" title="'+json[i]['name']+'" alt="'+json[i]['name']+'" />'+
+			           '</td>'+
+			           '<td class="text-center">'+json[i]['name']+'</td>'+
+			           '<td class="text-center">'+json[i]['solg']+'</td>'+
+			           '<td class="text-center">'+json[i]['price']+'</td>'+
+			           '<td class="text-center">'+json[i]['tonggia']+'</td>'+
+			        '</tr>';
+			        table+=html;  
+    			   }
+    			   $("#bill-table tbody").html(table);
+    			   finalpricetable = '<tbody>'+
+                         '<tr>'+
+                               '<td>Thành tiền</td>'+
+                               '<td><strong>'+finalprice+'</strong></td>'+
+                         '</tr>'+
+                         '<tr>'+
+                               '<td>Phí vận chuyển</td>'+
+                               '<td><strong>0</td></strong>'+
+                         '</tr>'+
+                         '<tr>'+
+                               '<td>Tổng cộng</td>'+
+                               '<td><strong>'+finalprice+'</td></strong>'+
+                         '</tr>'+
+                     '</tbody>';
+               $("#bill-price").html(finalpricetable);
+    			   
+    	       },
+    	       error: function (xhr, ajaxOptions, thrownError) {
+	            	 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+	            }
+    	   });
+       }
+    </script>
+</body>
+</html>

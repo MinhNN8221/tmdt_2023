@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+   <meta charset="UTF-8">
+   <link th:href="@{/font/fontawesome/css/all.css}" rel="stylesheet" />
+   <link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet" />
+   <link th:href="@{/css/owl.theme.default.min.css}" rel="stylesheet" />
+   <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+   <link th:href="@{/css/base.css}" rel="stylesheet" />
+   <link th:href="@{/css/index.css}" rel="stylesheet" />
+   <link th:href="@{/css/responsive.css}" rel="stylesheet" />
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <!-- HEADER CHO WEB -->
+  <header th:fragment="header" class="header">
+        <!--TOPBAR CHO MOBILE-->
+        <div class="topbar-mobile d-lg-none d-xl-none text-center text-sm-left">
+            <div class="container">
+                <span class="language mobi-lang-curr">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                         <img th:src="@{/image/language/vi-vn.png}" title="Tiếng Việt" alt="Tiếng Việt"/>
+                         <span>Tiếng Việt</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                        <a class="language-select" href="/freshfood/trang-chu?lang=en" name="en-gb">
+                            <img th:src="@{/image/language/en-gb.png}" alt="Tiếng Anh" title="Tiếng Anh" /> English
+                        </a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a class="language-select" href="/freshfood/trang-chu?lang=vi" name="vi-vn">
+                            <img th:src="@{/image/language/vi-vn.png}" alt="Tiếng Việt" title="Tiếng Việt" /> Tiếng Việt
+                        </a>
+                    </li>
+                </ul>
+                </span>
+                <span class="currency mobi_lang_curr margin-left-20">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                        <strong>đ</strong><span> - VNĐ</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                        <a class="currency-select" href="javascript:void(0)" name="EUR"> € - Euro </a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a class="currency-select" href="javascript:void(0)" name="GBP"> £- Pound Sterling </a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a class="currency-select" href="javascript:void(0)" name="USD"> $- USD </a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a class="currency-select" href="javascript:void(0)" name="VND"> đ- VNĐ </a>
+                    </li>
+                </ul>
+                </span>
+            </div>
+        </div>
+        <!--TOPBAR CHO DESKTOP-->
+        <div class="topbar d-none  d-sm-none d-md-none d-lg-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 a-left">
+                        <ul class="list-inline d-flex info-header">
+                            <li>
+                                <i class="fa fa-mobile"></i> <b>[[#{app.phone}]]:</b>
+                                <span>
+                                      <a href="tell:0123456789"> 0123456789</a>
+                                   </span>
+                            </li>
+                            <li class="margin-left-20">
+                                <i class="fa fa-envelope"></i> <b>Email:</b>
+                                <span>
+                                        <a href="mailto:contact@yourdomain.com">contact@yourdomain.com</a>
+                                    </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md--6 col-lg-6">
+                        <ul class="list-inline d-flex float-right">
+                            <li class="language desk-lan-curr">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                                    <img th:src="@{/image/language/vi-vn.png}" alt="Tiếng Việt" title="Tiếng Việt" />
+                                    <span>Tiếng Việt</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                        <a class="language-select" href="/freshfood/trang-chu?lang=vi" name="vi-vn">
+                                            <img th:src="@{/image/language/vi-vn.png}" alt="Tiếng Việt" title="Tiếng Việt" /> Tiếng Việt
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="language-select" href="/freshfood/trang-chu?lang=en" name="en-gb">
+                                            <img th:src="@{/image/language/en-gb.png}" alt="TIếng anh" title="TIếng anh" /> English
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="currency desk-lan-curr">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                                    <strong>đ</strong>
+                                    <span> - VNĐ</span>
+
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                        <a class="currency-select" href="javascript:void(0)" name="EUR"> € - Euro </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="currency-select" href="javascript:void(0)" name="GBP"> £ - Pound Sterling </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="currency-select" href="javascript:void(0)" name="USD"> $ - USD </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="currency-select" href="javascript:void(0)" name="VND"> đ - VNĐ </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li sec:authorize="isAnonymous()">
+                                <a th:href="@{/freshfood/dang-nhap}"><i class="fa fa-user"></i> [[#{app.login}]]</a>
+                            </li>
+                            <li sec:authorize="isAnonymous()">
+                                <span> -</span>
+                            </li>
+                            <li sec:authorize="isAnonymous()">
+                                <a th:href="@{/freshfood/dang-ki}">[[#{app.registry}]]</a>
+                            </li>
+                            <li sec:authorize="isAuthenticated()">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">[[#{app.welcome}]] [[${#request.userPrincipal.principal.username}]]</a>    
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                        <a href="/freshfood/trang-thai">Trạng thái đơn hàng</a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                       <a href="/freshfood/profile">[[#{app.profile}]]</a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                       <form action="/logout" method="POST">
+                                           <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                           <input class="w-100" style="background-color:none" type="submit" th:value="#{app.logout}"/>
+                                       </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="d-none li-search">
+                                <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                                <div class="dropdown topbar-dropdown d-none d-sm-none d-md-none d-lg-block">
+                                    <div class="content align-content-center">
+                                        <div class="header-search search-form">
+                                            <div class="form input-group search-bar search-form">
+                                                <input type="search" name="search" th:value="${search}" th:placeholder="#{app.search}" class="input-group-field st-default-search-input search-text" autocomplete="off" />
+                                                <span class="input-group-btn">
+                                                        <button class="btn icon-fallback-text">
+                                                            <i class="fa fa-search"></i>
+                                                         </button>
+                                                </span>
+                                                <script>
+                                                  $(".btn.icon-fallback-text").click(function() {
+                                                     let text = $(this).parent().parent().children("input[name='search']").val();
+                                                     window.location = "/freshfood/san-pham?search=" + text;
+                                                  });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--HEAADER CONTENT-->
+        <div class="container">
+            <div class="header-content clearfix">
+                <div class="row">
+                    <!--LOGO-->
+                    <div class="col-sm-12 col-md-12 col-lg-3 text-center text-lg-left">
+                        <div class="logo d-inline-block" id="logo">
+                            <a th:href="@{/freshfood/trang-chu}" class="logo-wrapper">
+                                <img th:src="@{/image/logo/logo_big-1.png}" alt="Fresh Food" width="100%" />
+                            </a>
+                        </div>
+                    </div>
+                    <!--HEADER SERVICE-->
+                    <div class="col-sm-12 col-md-12 col-lg-7 d-none d-sm-none d-md-block header-service"></div>
+                    <div class="col-sm-12 col-md-12 col-lg-2 d-none d-sm-none d-md-none d-lg-block">
+                        <div class="top-cart-contain float-right">
+                            <div class="mini-cart text-center" id="cart">
+                                <div class="heading-cart">
+                                    <a class="d-flex align-items-center" href="/freshfood/checkout">
+                                        <div class="icon float-left position-relative">
+                                            <i class="fa fa-shopping-bag"></i>
+                                            <span class="cartCount count_item_pr d-xl-none" id="cart-total">0</span>
+                                        </div>
+                                        <div class="right-content d-none d-xl-block">
+                                            <span class="label">[[#{app.cart}]]</span>
+                                            <span class="cartCount2">(0)</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="top-cart-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-bar d-lg-none">
+                <img th:src="@{/image/logo/menu-bar.png}" alt="menu bar" />
+            </div>
+            <div class="icon-cart-mobile d-block d-lg-none float-left position-absolute" onclick="window.location.href='/freshfood/checkout'">
+                <div class="icon position-relative">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span class="cartCount count_item_pr">0</span>
+                </div>
+            </div>
+        </div>
+        <!--NAVBAR-->
+        <nav>
+            <div class="container">
+                <div class="d-none d-sm-none d-md-none d-lg-flex justify-content-between">
+                    <ul class="nav nav-left">
+                        <li class="nav-item nav-item-lv1">
+                            <a class="nav-link" th:href="@{/freshfood/trang-chu}">[[#{app.homepage}]]</a>
+                        </li>
+                        <li class="nav-item nav-item-lv1">
+                            <a class="nav-link" th:href="@{/freshfood/gioi-thieu}">[[#{app.intro}]]</a>
+                        </li>
+                        <li class="nav-item nav-item-lv1">
+                            <a class="nav-link" th:href="@{/freshfood/san-pham}">[[#{app.product}]]</a>
+                        </li>
+                        <li class="nav-item nav-item-lv1">
+                            <a class="nav-link" href = "javascript:void(0)">[[#{app.news}]]</a>
+                        </li>
+                        <li class="nav-item nav-item-lv1">
+                            <a class="nav-link" th:href = "@{/freshfood/lien-he}">[[#{app.contact}]]</a>
+                        </li>
+                    </ul>
+                    <div class="menu-search  bbbbb">
+                        <div class="header-search search-form">
+                            <div class="form input-group search-bar search-form">
+                                <input type="search" name="search" th:value="${search}" th:placeholder="#{app.search}" class="input-group-field st-default-search-input search-text" autocomplete="off" />
+                                <span class="input-group-btn">
+                                    <button class="btn icon-fallback-text">
+                                        <i class="fa fa-search"></i>
+                                     </button>
+                                 </span>
+                                 <script>
+                                       $(".btn.icon-fallback-text").click(function() {
+                                            let text = $(this).parent().parent().children("input[name='search']").val();
+                                            window.location = "/freshfood/san-pham?search=" + text;
+                                       });
+                                 </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-lg-none d-xl-none menu-offcanvas">
+                    <div class="clearfix head-menu">
+                        <ul class="list-inline">
+                            <li>
+                                <a th:href="@{/freshfood/dang-nhap}"><i class="fa fa-user"></i>[[#{app.login}]]</a>
+                            </li>
+                            <li>
+                                <span> -</span>
+                            </li>
+                            <li>
+                                <a th:href="@{/freshfood/dang-ki}">[[#{app.registry}]]</a>
+                            </li>
+                            <li class="li-search">
+                                <div class="header-search search-form">
+                                    <div class="form input-group search-bar search_form">
+                                        <input type="search" name="search" th:value="${search}" th:placeholder="#{search}" class="input-group-field st-default-search-input search-text" autocomplete="off">
+                                        <span class="input-group-btn">
+                                            <button class="btn icon-fallback-text">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                        <script>
+                                            $(".btn.icon-fallback-text").click(function() {
+                                                let text = $(this).parent().parent().children("input[name='search']").val();
+                                                window.location = "/freshfood/san-pham?search=" + text;
+                                            });
+                                         </script>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="menuclose"><i class="fa fa-window-close"></i></div>
+                    </div>
+                    <ul class="nav-mobile">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/freshfood/trang-chu}">fdsfsd</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/freshfood/gioi-thieu}">[[#{app.intro}]]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/freshfood/san-pham}">[[#{app.product}]]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)">[[#{app.news]}]]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/freshfood/lien-he}">[[#{app.contact}]]</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+   </header> 
+  
+   <!-- FOOTER NAV -->
+    <section th:fragment="footer-nav" class="awe-section-12 carousel-partner module-carousel" id="carousel-0">
+           <div class="section section-brand mb-5">
+                <div class="container">
+                     <h2 class="d-none">Partner</h2>
+                      <div class="owl-carousel owl-theme" data-nav="true" data-lg-items="6" data-md-items="6" data-sm-items="2" data-xs-items="2">
+                            <div class="brand-item">
+                                 <a href="javascript:void(0)" class="img25">
+                                    <img th:src="@{/image/hang-san-xuat/brand1-165x80.png}" alt="brand 1" />
+                                 </a>
+                             </div>
+                             <div class="brand-item">
+                                  <a href="javascript:void(0)" class="img25">
+                                    <img th:src="@{/image/hang-san-xuat/brand2-165x80.png}" alt="brand 2" />
+                                  </a>
+                             </div>
+                             <div class="brand-item">
+                                  <a href="javascript:void(0)" class="img25">
+                                    <img th:src="@{/image/hang-san-xuat/brand3-165x80.png}" alt="brand 3" />
+                                  </a>
+                              </div>
+                              <div class="brand-item">
+                                  <a href="javascript:void(0)" class="img25">
+                                    <img th:src="@{/image/hang-san-xuat/brand4-165x80.png}" alt="brand 4" />
+                                  </a>
+                              </div>
+                              <div class="brand-item">
+                                  <a href="javascript:void(0)" class="img25">
+                                    <img th:src="@{/image/hang-san-xuat/brand5-165x80.png}" alt="brand 5" />
+                                  </a>
+                                </div>
+                                <div class="brand-item">
+                                   <a href="javascript:void(0)" class="img25">
+                                     <img th:src="@{/image/hang-san-xuat/brand6-165x80.png}" alt="brand 6" />
+                                   </a>
+                                </div>
+                     </div>
+                </div>
+           </div>
+   </section>
+   
+   <!-- FOOTER -->
+   <footer th:fragment="footer" class="footer">
+                <div class="content">
+                    <div class="site-footer">
+                        <div class="footer-inner padding-top-35 pb-lg-5">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-5">
+                                        <div class="footer-widget">
+                                            <h3 class="hastog">
+                                                <span>Liên hệ</span>
+                                            </h3>
+                                            <ul class="list-menu list-showroom">
+                                                <li class="clearfix">
+                                                    <i class="block_icon fa fa-map-marker"></i>
+                                                    <p>A12, Đinh Tiên Hoàng, Q. Hoàn Kiếm, Hà Nội</p>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <i class="block_icon fa fa-phone"></i>
+                                                    <a href="tel:0123456789">0123456789</a>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <i class="block_icon fa fa-envelope"></i>
+                                                    <a href="mailto:contact@yourdomain.com">contact@yourdomain.com</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-2">
+                                        <div class="footer-widget">
+                                            <h3 class="hastog">
+                                                <span>Thông tin</span>
+                                            </h3>
+                                            <ul class="list-menu list-blogs">
+                                                <li>
+                                                    <a href="/freshfood/gioi-thieu">Giới thiệu</a>
+                                                </li>
+                                                <li>
+                                                    <a href="thong-tin-van-chuyen.html">Thông tin vận chuyển</a>
+                                                </li>
+                                                <li>
+                                                    <a href="quy-dinh-va-dieu-khoan.html">Quy định và Điều khoản</a>
+                                                </li>
+                                                <li>
+                                                    <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-2">
+                                        <div class="footer-widget">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-3">
+                                        <div class="footer-widget">
+                                            <h3 class="margin-bottom-20 hastog">
+                                                <span>Facebook</span>
+                                            </h3>
+                                            <div class="list-menu">
+                                                <div class="footerText">
+                                                    <div class="fb-page" data-href="https://www.facebook.com/FacebookVietNam" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="copyright clearfix">
+                            <div class="container">
+                                <div class="inner clearfix">
+                                    <div class="row">
+                                        <div class="col-md-6 text-center text-lg-left">
+                                            <span>&copy; Copyright 2018-2021 Fresh Food. </span>
+                                        </div>
+                                        <div class="col-md-6 text-center text-lg-right hidden-xs">
+                                            <ul class="list-menu-footer"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="back-to-top">
+                                    <i class="fa fa-angle-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+   </footer>
+   <script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/all.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/index.js}"></script>        
+</body>
+</html>

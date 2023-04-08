@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="UTF-8" />
+   <meta name="description" content="overview &amp; stats" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/assets/font-awesome/4.2.0/css/font-awesome.min.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/font/fontawesome/css/all.css}"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    
+	<link rel="stylesheet" th:href="@{/assets/fonts/fonts.googleapis.com.css}" />
+
+	<link rel="stylesheet" th:href="@{/assets/css/ace.min.css}" class="ace-main-stylesheet" id="main-ace-style" />
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/responsive.css}" rel="stylesheet" />
+   
+	<!-- ace settings handler -->
+	<script th:src="@{/assets/js/ace-extra.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.2.1.1.min.js}"></script>
+	
+   <title>Danh mục Admin</title>
+</head>
+<body class="no-skin">
+
+    <div th:replace="fragment-admin::navbar"></div> 
+  
+    <div class="main-container" id="main-container">
+        <script type="text/javascript">
+		    try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+	    </script>
+	    <div th:replace="fragment-admin::sidebar"></div> 
+	    <div class="main-content">
+		     <div class="main-content-inner">
+		         <div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a th:href="@{/freshfood/admin/trang-chu}">Freshfood</a>
+							</li>
+							<li class="active">Danh mục</li>
+						</ul><!-- /.breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+				  </div>
+				  
+				  <div>
+                         <div style="margin: 20px 10%; width:fit-content">
+                            <input style="width: 200px; margin-right:20px; margin-top: 5px; float:left" class="form-control" type = "text" placeholder="Thêm danh mục" />
+                            <a onclick = "addcate(this)" style="border-radius: 15px" class=" btn btn-success">Thêm danh mục</a>
+                         </div> 
+                  </div>
+				  
+				  <form>
+                       <div class="table-responsive table-cart-content">
+                            <table id="cate-table" class="table table-bordered">
+                                  <thead>
+                                      <tr>
+                                          <td class="text-center"><strong>ID</strong></td>
+                                          <td class="text-center"><strong>Tên danh mục</strong></td>
+                                          <td class="text-center"><strong>Xóa</strong></td>
+                                       </tr>
+                                   </thead>
+                                 <tbody>
+                                         
+                                 </tbody>
+                            </table>
+                       </div>          
+                </form>
+		   </div>
+      </div>
+  </div>
+     
+    <script type="text/javascript">
+		window.jQuery || document.write("<script src='assets/js/jquery.min.js'>"+"<"+"/script>");
+    </script>
+	<script type="text/javascript">
+		if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+ 
+	<script th:src="@{/assets/js/jquery-ui.custom.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.ui.touch-punch.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.easypiechart.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.sparkline.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.flot.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.flot.pie.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.flot.resize.min.js}"></script>
+
+	<script th:src="@{/assets/js/ace-elements.min.js}"></script>
+	<script th:src="@{/assets/js/ace.min.js}"></script>
+	<script type = "text/javascript">
+	     $(document).ready(function(){
+  	        loadcategory();
+         });
+	     
+	     function loadcategory(){
+	    	 $.ajax({
+	    		 url : '/freshfood/category/getall',
+	    		 type : 'get',
+	    		 dataType: 'json',
+	    		 success: function(json){
+	    			 let table = '';
+	    			 for(let i = 0;i<json.length; i++){
+	    				 var html = '<tr>'+
+				           '<td class="text-center">'+
+				                '<span>'+json[i]['id']+'</span>'+
+				           '</td>'+
+				           '<td class="text-left">'+
+			                   '<div class="input-group btn-block">'+
+			                       '<input class="form-control" type="text" value="'+json[i]['name']+'"/>'+
+			                       '<span class="input-group-btn">'+
+			                            '<button cate-id="'+json[i]['id']+'" type="button" data-toggle="tooltip" title class="btn btn-primary update-btn" data-original-title="Cập nhật">'+
+			                                '<i class="fa fa-arrow-circle-right"></i>'+
+			                            '</button>'+
+			                       '</span>'+
+			                   '</div>'+
+			               '</td>'+
+			               '<td class="text-center">'+
+			                   '<button type="button" onclick="deletecate('+json[i]['id']+')" data-toggle="tooltip" title class="btn btn-danger" data-original-title="Xóa">'+
+			                       '<i class="fa fa-times-circle"></i>'+
+			                   '</button>'+
+			               '</td>'+
+				        '</tr>';
+				     table+=html;   
+	    			 }
+	    			 $('#cate-table tbody').html(table);
+	    			 $('button.btn.btn-primary.update-btn').on("click", function(){
+			    		   val = $(this).parent().parent().find('input').val();
+	    				   id = $(this).attr('cate-id');
+			    		   updatecate(id, val);
+			    	   });
+	    		 },
+	    		 error: function(){
+	    			 alert("không thành công");
+	    		 }
+	    	 });
+	     };
+	     
+	     function addcate(element){
+	    	 var val = $(element).parent().find('input').val();
+	    	 var name = "[[${_csrf.headerName}]]";
+			 var token = "[[${_csrf.token}]]";
+			 var cate = {
+				"name" : val
+			}
+			 $.ajax({
+				   url : '/freshfood/category/add',
+				   type : 'post',
+				   dataType: 'json',
+				   data: JSON.stringify(cate),
+			       contentType: 'application/json',
+				   beforeSend: function(xhr){
+			            xhr.setRequestHeader(name, token);
+		           },
+		           success: function(json){
+			              alert("Thêm danh mục thành công id"+json);
+			              loadcategory();
+		           },
+		           error: function(){
+			           alert("không thành công !");
+		           }
+			   });
+	     };
+	     
+	     function deletecate(id){
+	    	   var name = "[[${_csrf.headerName}]]";
+			   var token = "[[${_csrf.token}]]";
+			   $.ajax({
+				   url : '/freshfood/category/xoa/'+id,
+				   type : 'delete',
+				   dataType: 'json',
+				   beforeSend: function(xhr){
+			            xhr.setRequestHeader(name, token);
+		           },
+		           success: function(json){
+			              alert("Bạn đã xóa danh mục có id: "+json);
+			              loadcategory();
+		           },
+		           error: function(){
+			           alert("không thành công !");
+		           }
+			   });
+	     };
+	     
+	     function updatecate(id, val){
+	    	 var name = "[[${_csrf.headerName}]]";
+			 var token = "[[${_csrf.token}]]";
+			 var cate = {
+			    "id": id,
+				"name" : val
+			 }
+	    	 $.ajax({
+	    		 url: '/freshfood/category/update',
+	    		 type: 'put',
+	    		 dataType: 'json',
+	    		 data : JSON.stringify(cate),
+	    		 contentType: 'application/json',
+	    		 beforeSend: function(xhr){
+	    			  xhr.setRequestHeader(name,token);
+	    		 },
+	    		 success: function(json){
+	    			 alert("Cập nhật danh mục có id: "+json+" thành công");
+	    			 loadcategory();
+	    		 },
+	    		 error: function(){
+	    			alert("Không cập nhật thành công !");
+	    		 }
+	    	 });
+	     };
+	</script>
+</body>
+</html>

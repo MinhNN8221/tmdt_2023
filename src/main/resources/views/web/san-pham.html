@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="_csrf" data-th-content="${_csrf.token}" />
+   <meta name="_csrf_header" data-th-content="${_csrf.headerName}" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link type="text/css" rel="stylesheet" th:href="@{/font/fontawesome/css/all.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/base.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/responsive.css}"/>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <title>Sản phẩm</title>
+</head>
+<body class="common-home">
+     
+     <header th:replace="fragment::header"></header>
+     
+      <section class="bread_crumb py-4">
+        <div class="container">
+            <Div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                       <li>
+                           <a href="/freshfood/trang-chu"><span ><i class="fa fa-home"></i> Trang chủ</span></a>
+                           <span><i class="fa fa-angle-right"></i></span>
+                       </li>
+                       <li>
+                           <a th:if="${cateName == null}" href="/freshfood/san-pham">
+                               <strong >Tất cả sản phẩm</strong>
+                           </a>
+                           <a th:if="${cateName != null}" href = "javascript:void(0)">
+                               <strong>[[${cateName}]]</strong>
+                           </a>
+                       </li>
+                    </ul>
+                </div>
+            </Div>
+        </div>
+    </section>
+     
+     
+    
+   <section>
+      <section class="page">
+       <div class="policy d-flex justify-content-around" id="header-service-0" style="background-image: none;">
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy1-0x0.png}" alt="Miễn phí vận chuyển" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)"> Miễn phí vận chuyển</a>
+                        <p>
+                            <p>B&aacute;n k&iacute;nh 100 km</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy2-0x0.png}" alt="Hỗ trợ 24/7" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)">Hỗ trợ 24/7</a>
+                        <p>
+                            <p>Hotline:&nbsp;<a href="callto:19001009">0123456789</a></p>
+                        </p>
+                    </div>
+                </div>
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy3-0x0.png}" alt="Giờ làm việc" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)"> Giờ làm việc</a>
+                        <p>
+                            <p>T2 - T7 Giờ h&agrave;nh ch&iacute;nh</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $('.header .header-content .header-service').append($('#header-service-0'));
+            </script>
+            <div class="container">
+           <div class="row">
+                <div class="clearfix"></div>
+                     <div th:if="${productList.size() == 0}" class=" text-center col-sm-12 col-md-12 col-lg-9 order-lg-2">
+                         <h3>Không có sản phẩm cần tìm !</h3>
+                     </div>
+                     <div th:if="${productList.size() > 0}" class="col-sm-12 col-md-12 col-lg-9 order-lg-2">
+                          <div class="category-products products">
+                               <div class="sortPagiBar">
+                                    <div class="row">
+                                          <div class="col-sm-12 col-md-12 text-sm-right">
+                                               <div class="bg-white clearfix">
+                                                  <div id="sort-by">
+                                                     <label class="d-none d-md-block">Sắp xếp theo: </label>
+                                                     <div>
+                                                        <span class="dropdown-toggle" data-toggle="dropdown">[[${sortName}]]
+                                                           <i class="fa fa-angle-down" aria-hidden="true"></i>    
+                                                        </span> 
+                                                        <ul class="dropdown-menu">
+                                                           <li class="dropdown-item">
+                                                              <a th:href="@{/freshfood/san-pham?sort=creTime&sortdir=asc}">Mặc định</a>
+                                                           </li>
+                                                           <li class="dropdown-item">
+                                                              <a th:href="@{'/freshfood/san-pham?sort=name&sortdir=asc'+${search != null ? '&search='+search : ''}}">Tên (A-Z)</a>
+                                                           </li>
+                                                           <li class="dropdown-item">
+                                                              <a th:href="@{'/freshfood/san-pham?sort=name&sortdir=desc'+${search != null ? '&search='+search : ''}}">Tên (Z-A)</a>
+                                                           </li>
+                                                           <li class="dropdown-item">
+                                                              <a th:href="@{'/freshfood/san-pham?sort=price&sortdir=asc'+${search != null ? '&search='+search : ''}}">Giá (Thấp-Cao)</a>
+                                                           </li>
+                                                           <li class="dropdown-item">
+                                                              <a th:href="@{'/freshfood/san-pham?sort=price&sortdir=desc'+${search != null ? '&search='+search : ''}}">Giá (Cao-Thấp)</a>
+                                                           </li>
+                                                       </ul>
+                                                   </div>
+                                                </div>
+                                                <div class="view-mode float-left">
+                                                    <a href="javascript:void(0)" id="grid-view" data-toggle="tooltip" title="Lưới">
+                                                        <label class="text-sm-left">
+                                                             <b class="btn button-view-mode view-mode-grid active">
+                                                                <i class="fa fa-th" aria-hidden="true"></i>
+                                                             </b>
+                                                        </label>
+                                                    </a>
+                                                    <a href="javascript:void(0)" id="list-view" data-toggle="tooltip" title="Danh sách">
+                                                        <label class="text-sm-left">
+                                                           <b class="btn button-view-mode view-mode-list">
+                                                              <i class="fa fa-th-list" aria-hidden="true"></i>
+                                                           </b>
+                                                        </label>
+                                                    </a>
+                                                 </div>
+                                             </div>
+                                        </div>
+                                  </div>
+                             </div>
+                             <section class="product-view product-view-list">
+                                <div class="row list-products product-grid">
+                                     <div th:each="pro:${productList}" class="col-sm-6 col-md-4 col-lg-4">
+                                        <div class="product-box">
+                                            <div class="product-thumbnail flexbox-grid">
+                                                <a th:href="@{'/freshfood/check?id='+${pro.id}}" th:title="${pro.name}">
+                                                   <img th:src="${pro.ProductImagePath}" th:alt="${pro.name}"/>
+                                                </a>
+                                                <div class="product-action d-none">
+                                                    <form class="form variants form-nut-grid margin-bottom-0"> 
+                                                        <div>
+                                                            <a class="btn-buy btn-cart btn left-to add_to_cart" data-toggle="tooltip" title="Mua ngay" th:href="@{'/freshfood/check?id='+${pro.id}}">
+                                                                <i class="fas fa-shopping-bag"></i>
+                                                            </a>
+                                                            <a th:href="@{'/freshfood/check?id='+${pro.id}}" data-toggle="tooltip" title="Xem" class="btn-gray btn_view btn right-to">
+                                                               <i class="fas fa-eye"></i>
+                                                            </a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                           </div>
+                                           <div class="product-info text-center">
+                                                <h3 class="product-name">
+                                                    <a th:href="@{'/freshfood/check?id='+${pro.id}}"  th:title="${pro.name}">
+                                                        <span>[[${pro.name}]]</span>
+                                                    </a>
+                                                </h3>
+                                                <div class="price-box">
+                                                    <div class="special-price">
+                                                        <span>[[${pro.price}]]</span>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row list-products product-list" style="display: none;">
+                                    <div th:each="pro:${productList}" class="col-sm-12">
+                                        <div class="product-box clearfix">
+                                            <div class="product-thumbnail float-left">
+                                                <a th:href="@{'/freshfood/check?id='+${pro.id}}" th:title="${pro.name}">
+                                                    <img th:src="${pro.ProductImagePath}" th:alt="${pro.name}"/>
+                                                </a>
+                                            </div>
+                                            <div class="product-info float-left">
+                                                <h3 class="product-name"> 
+                                                    <a th:href="@{'/freshfood/check?id='+${pro.id}}">[[${pro.name}]]</a>
+                                                </h3>
+                                                <div class="price-box clearfix">
+                                                    <div class="special-price float-left">
+                                                        <span class="price product-price">
+                                                            [[${pro.price}]]
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <form class="variants pro-action-btn margin-top-15">
+                                                    <a th:href="@{'/freshfood/check?id='+${pro.id}}" class="btn-buy btn-cart  btn btn-primary" data-toggle="tooltip" title="Mua ngay">
+                                                       <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                                       Mua ngay
+                                                    </a>
+                                                    <a th:href="@{'/freshfood/check?id='+${pro.id}}" class="btn btn-secondary" data-toggle="tooltip" title="Xem">
+                                                       <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div th:if="${totalPages > 1}" class="text-center">
+                                    <ul class="pagination justify-content-center">
+                                        <li th:if="${currentPage > 1}" class="page-item page-move"><a class="page-link" th:href = "@{'/freshfood/san-pham?page=1&sort='+${sortBy}+'&sortdir='+${sortDir}+${search != null ? '&search='+search : ''}}">|<</a></li>
+                                        <li th:if="${currentPage > 1}" class="page-item page-move"><a class="page-link" th:href = "@{'/freshfood/san-pham?page='+${currentPage-1}+'&sort='+${sortBy}+'&sortdir='+${sortDir}+${search != null ? '&search='+search : ''}}"><</a></li>
+                                        <li th:each="i : ${#numbers.sequence(1,totalPages)}" th:class="${currentPage == i? 'page-item active' : 'page-item'}"><a class="page-link" th:href = "@{'/freshfood/san-pham?page='+${i}+'&sort='+${sortBy}+'&sortdir='+${sortDir}+${search != null ? '&search='+search : ''}}">[[${i}]]</a></li>
+                                        <li th:if="${currentPage < totalPages}" class="page-item page-move"><a class="page-link" th:href = "@{'/freshfood/san-pham?page='+${currentPage+1}+'&sort='+${sortBy}+'&sortdir='+${sortDir}+${search != null ? '&search='+search : ''}}">></a></li>
+                                        <li th:if="${currentPage < totalPages}" class="page-item page-move"><a class="page-link" th:href = "@{'/freshfood/san-pham?page='+${totalPages}+'&sort='+${sortBy}+'&sortdir='+${sortDir}+${search != null ? '&search='+search : ''}}">>|</a></li>
+                                    </ul>
+                                </div>
+                             </section>
+                       </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                    <aside id="column-left" class="left-column aompliance aside-vetical-menu">
+                            <aside class="blog-aside aside-item sidebar-category module_category  category_custom" id="category_custom-1">
+                                <div class="aside-title text-center text-xl-left">
+                                    <h2 class="title-head">
+                                        <span>Danh mục sản phẩm</span>
+                                    </h2>
+                                </div>
+                                <div class="aside-content">
+                                    <div  class="nav-category navbar-toggleable-md">
+                                       <ul class="nav navbar-pills">
+                                            <li th:each="c:${category}" class="nav-item">
+                                               <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                               <a th:href="@{'/freshfood/san-pham?id='+${c.id}}" class="nav-link">[[${c.name}]]</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                           </aside>
+                     </aside>
+                </div>
+           </div>
+      </div>
+      </section>                
+   </section>
+   
+   <section th:replace="fragment::footer-nav"></section> 
+   
+   <footer th:replace="fragment::footer"></footer>
+   
+   <script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script> 
+   <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/all.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/index.js}"></script>
+   
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="_csrf" data-th-content="${_csrf.token}" />
+   <meta name="_csrf_header" data-th-content="${_csrf.headerName}" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link type="text/css" rel="stylesheet" th:href="@{/font/fontawesome/css/all.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/base.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/responsive.css}"/>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <title>Liên hệ</title>
+</head>
+<body>
+   <header th:replace = "fragment::header"></header>
+   
+   <section class="bread_crumb py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a th:href="@{/freshfood/trang-chu}"><span ><i class="fa fa-home"></i> Trang chủ</span></a>
+                            <span><i class="fa fa-angle-right"></i></span>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"> <span>Liên hệ</span></a>
+                            <span><i class="fa fa-angle-right"></i></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <section class="page mb-4"> 
+             <div class="policy d-flex justify-content-around" id="header-service-0" style="background-image: none;">
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy1-0x0.png}" alt="Miễn phí vận chuyển" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)"> Miễn phí vận chuyển</a>
+                        <p>
+                            <p>B&aacute;n k&iacute;nh 100 km</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy2-0x0.png}" alt="Hỗ trợ 24/7" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)">Hỗ trợ 24/7</a>
+                        <p>
+                            <p>Hotline:&nbsp;<a href="callto:19001009">0123456789</a></p>
+                        </p>
+                    </div>
+                </div>
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy3-0x0.png}" alt="Giờ làm việc" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)"> Giờ làm việc</a>
+                        <p>
+                            <p>T2 - T7 Giờ h&agrave;nh ch&iacute;nh</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $('.header .header-content .header-service').append($('#header-service-0'));
+            </script>
+            <div class="container container-fix-hd contact margin-bottom-30">
+                <div class="row">
+                    <div class="clearfix"></div>
+                    <div id="content" class="col-sm-12 col-xs-12 col-md-12">
+                        <h3 class="title-head">
+                            <span>Thông tin liên hệ</span>
+                        </h3>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div id = "login" class="mb-4">
+                                            <form method = "post" enctype="multipart/form-data" id="contact">
+                                                <p id="errorFills" style="margin-bottom:10px; color: red;"></p>
+                                                <div id="emtry_contact" class="form-signup form_contact clearfix">
+                                                    <div class="row row-8Gutter">
+                                                        <div class="col-md-12">
+                                                            <fieldset class="form-group required">
+                                                                <input type="text" placeholder="Tên của bạn" value="" name="name" id="name" class="form-control form-control-lg" required />
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <fieldset class="form-group required">
+                                                                <input type="email" value="" placeholder="Địa chỉ Email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$" data-validation="email"
+                                                                       name="email" id="email" class="form-control form-control-lg" required>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+                                                    <fieldset class="form-group required">
+                                                            <textarea name="message" rows="6" id="message" placeholder="Nội dung"
+                                                                      class="form-control form-control-lg"></textarea>
+                                                    </fieldset>
+                                                </div>
+                                            </form>
+                                             <div>
+                                                <button id="submit-contact-form" class="btn btn-primary">
+                                                    Gửi đi
+                                                </button>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contact-box-info clearfix margin-bottom-30">
+                                            <div>
+                                                <div class="item">
+                                                    <div class="d-flex">
+                                                        <i class="fa fa-map-marker"></i>
+                                                        <div class="info">
+                                                            <label>Địa chỉ</label></br>
+                                                            A12, Đinh Tiên Hoàng, Q. Hoàn Kiếm, Hà Nội                                                                                             
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <i class="fa fa-phone"></i>
+                                                        <div class="info">
+                                                            <label>Điện thoại</label></br>
+                                                            <a href="tel:0123456789">0123456789</a>
+                                                            <p>Thứ 2-CN: 8h - 18h</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <i class="fa fa-envelope"></i>
+                                                        <div class="info">
+                                                            <label>Email</label></br>
+                                                            <a href="mailto:contact@yourdomain.com">
+                                                                contact@yourdomain.com
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section th:replace="fragment::footer-nav"></section>
+    </section>
+    
+    <footer th:replace="fragment::footer"></footer>
+    
+   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+   <script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script> 
+   <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/all.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/index.js}"></script>
+   <script type="text/javascript" th:src="@{/ckeditor/ckeditor.js}"></script>
+   
+   <script type="text/javascript">
+        CKEDITOR.replace("message"); // id và name đều phải đẻ giống nhau là message
+        
+        $(document).ready(function(){
+       	 $("#submit-contact-form").click(function(){
+       		var message = CKEDITOR.instances['message'].getData();
+       		var data = {};
+       		data["name"] = $('#contact input[name = "name"]').val();
+       		data["email"] = $('#contact input[name = "email"]').val();
+       		data["message"] = message;
+       		var name = "[[${_csrf.headerName}]]";
+ 		    var token = "[[${_csrf.token}]]";
+       		$.ajax({
+  	            url: '/freshfood/contact',
+  	            type: 'POST',
+  	            contentType: 'application/json',
+  	            data: JSON.stringify(data),
+  	            beforeSend: function(xhr){
+    			    xhr.setRequestHeader(name,token);
+    		    },
+  	            success: function (json) {
+  	            	alert("Gửi thư thành công !");
+  	            },
+  	            error: function (xhr, ajaxOptions, thrownError) {
+  	            	 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+  	            }
+  	        });
+           }); 
+        });
+   </script>
+</body>
+</html>
