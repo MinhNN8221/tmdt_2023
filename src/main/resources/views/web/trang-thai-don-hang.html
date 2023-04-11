@@ -104,6 +104,7 @@
                                     <td class="text-center"><strong>Số lượng</strong></td>
                                     <td class="text-center"><strong>Tổng tiền</strong></td>
                                     <td class="text-center"><strong>Trạng thái</strong></td>
+                                    <td class="text-center"><strong>Xác nhận</strong></td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -115,6 +116,17 @@
                                     <td><span class="price product-price" th:text="${pro.quantity}"></span></td>
                                     <td><span class="price product-price" th:text="${pro.quantity*pro.price}"></span></td>
                                     <td><span class="price product-price" th:text="${bill.get(item.index).status}"></span></td>
+                                    <td>
+                                        <th:block th:if="${bill.get(item.index).status.equalsIgnoreCase('Đang Giao')}">
+                                            <a th:href="@{/freshfood/trang-thai(id=${item.index})}" id="id_btn" style="background-color: yellow; padding: 5px; border: 1px solid black;">Đã nhận hàng?</a>
+                                        </th:block>
+                                        <th:block th:if="${bill.get(item.index).status.equalsIgnoreCase('Đã giao')}">
+                                            <p style="color: cyan; font-weight: bold">Đã nhận</p>
+                                        </th:block>
+                                        <th:block th:if="${bill.get(item.index).status.equalsIgnoreCase('Chưa giao')}">
+                                            <p style="color: red; font-weight: bold">Chưa nhận hàng</p>
+                                        </th:block>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -135,10 +147,6 @@
                             </a>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <th:if
-                            <a href="/freshfood/thanh-toan" class="btn btn-primary">
-                                Tiếp tục
-                            </a>
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">

@@ -292,15 +292,22 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/trang-thai", method = RequestMethod.GET)
-	public ModelAndView status() {
+	public ModelAndView status(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("web/trang-thai-don-hang");
 		UserEntity user = userservice.getLoggingInUsser();
 
-		List<BillDetailEntity> billDetails=billDetailService.findByUser(user);
-		List<ProductEntity> products=new ArrayList<>();
-		for(BillDetailEntity billDetail:billDetails){
+		List<BillDetailEntity> billDetails = billDetailService.findByUser(user);
+		List<ProductEntity> products = new ArrayList<>();
+		for (BillDetailEntity billDetail : billDetails) {
 			products.add(productService.findOneById(billDetail.getPro_id()));
-			products.get(products.size()-1).setQuantity(billDetail.getQuantity());
+			products.get(products.size() - 1).setQuantity(billDetail.getQuantity());
+		}
+		System.out.println("hello ");
+		System.out.println("hello " + request.getParameter("id_btn"));
+		if (request.getParameter("id") != null) {
+			int id = Integer.valueOf(request.getParameter("id"));
+			billDetails.get(id).setStatus("Đã giao");
+			billDetailService.save(billDetails.get(id));
 		}
 		mv.addObject("productList", products);
 		mv.addObject("bill", billDetails);

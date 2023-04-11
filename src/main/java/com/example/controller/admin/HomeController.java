@@ -1,11 +1,19 @@
 package com.example.controller.admin;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.example.entity.BillDetailEntity;
+import com.example.entity.BillEntity;
+import com.example.service.InBillDetailService;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -37,6 +45,9 @@ public class HomeController {
 	
 	@Autowired
 	private InBillService billservice;
+
+	@Autowired
+	private InBillDetailService billDetailService;
 	
 	
 	@RequestMapping(value = "/admin/trang-chu", method = RequestMethod.GET)
@@ -137,5 +148,36 @@ public class HomeController {
 	public String billdetail(@RequestParam("id") Integer id, Model model) {
 		model.addAttribute("bill", billservice.findOneById(id));
 		return "/admin/chi-tiet-don-hang";
+	}
+
+	@GetMapping(value = "/admin/don-hang-confirm")
+	public String confirm(@RequestParam("id") String id, Model model) {
+		String[] str=id.split("/");
+		int id_bill=Integer.valueOf(str[0]);
+		int indexBillDetail=Integer.valueOf(str[1]);
+		model.addAttribute("bill", billservice.findOneById(id_bill));
+		List<BillDetailEntity> billDetailEntities=billDetailService.findByBill(billservice.findOneById(id_bill));
+		billDetailEntities.get(indexBillDetail).setStatus("Đang giao");
+		billDetailService.save(billDetailEntities.get(indexBillDetail));
+		return "/admin/chi-tiet-don-hang.html";
+	}
+
+	@GetMapping("/admin/don-hang-export")
+	public void exportToPDF(@RequestParam("id") Integer id, HttpServletResponse response) throws DocumentException, IOException, org.dom4j.DocumentException {
+		response.setContentType("application/pdf");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+		String currentDateTime = dateFormatter.format(new Date());
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=bill_" + currentDateTime + ".pdf";
+		response.setHeader(headerKey, headerValue);
+
+		BillEntity bill=billservice.findOneById(id);
+		List<ProductEntity> productEntities=new ArrayList<>();
+		for(BillDetailEntity billDetail:bill.getBilldetailList()){
+			productEntities.add(productservice.findOneById(billDetail.getPro_id()));
+		}
+		FileExport exporter=new FileExport();
+		exporter.export(bill, productEntities, response);
+
 	}
 }

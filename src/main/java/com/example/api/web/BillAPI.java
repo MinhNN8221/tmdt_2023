@@ -144,7 +144,8 @@ public class BillAPI {
 			a.put("price", p.getPrice()+"");
 			a.put("solg", bitem.getQuantity()+"");
 			a.put("tonggia", (bitem.getQuantity() * p.getPrice())+"");
-		    m.add(a);
+			a.put("status", bitem.getStatus());
+			m.add(a);
 		}
 		return m;
 	}
