@@ -21,7 +21,6 @@ import java.io.File;
 import javax.imageio.ImageIO;;
 
 public class FileExport {
-//    private String fontPath = "C:\\Users\\MinhNN\\OneDrive\\Desktop\\tmdt12\\Freshfood-master\\src\\main\\resources\\static\\fontpdf\\arialuni.ttf";
     private String fontPath = "src/main/resources/static/fontpdf/arialuni.ttf";
 
     public FileExport() {
