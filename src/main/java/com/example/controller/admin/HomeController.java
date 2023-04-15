@@ -52,20 +52,32 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/admin/trang-chu", method = RequestMethod.GET)
-	public ModelAndView trangchu() throws Exception{
+	public ModelAndView trangchu(HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("admin/trang-chu-admin");
 		DecimalFormat formatter = new DecimalFormat("#,### đ");
 
 		DecimalFormat df = new DecimalFormat("#.##");
 		SimpleDateFormat smf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-		Date start = smf.parse("01/01/"+2023+" 00:00:00");
-		Date end = smf.parse("31/12/"+2023+" 23:59:59");
+		Date start; Date end;
+		String id=request.getParameter("id");
+		int year=2023;
+		if(id!=null){
+			year=Integer.valueOf(id);
+			start = smf.parse("01/01/"+year+" 00:00:00");
+			end = smf.parse("31/12/"+year+" 23:59:59");
+		}else{
+			start = smf.parse("01/01/"+year+" 00:00:00");
+			end = smf.parse("31/12/"+year+" 23:59:59");
+		}
+
 		List<Float> datalines=billDetailService.getChartData(start, end);
 		List<Integer> pieData=billDetailService.getPieChartData(start, end);
 
 		float[] dataTNY=billDetailService.getChartDataTNY(start, end);
 		float percent=(dataTNY[0]/dataTNY[1])*100;
 		String dataP=percent>100?"+"+df.format(percent):"-"+df.format(Math.abs(100-percent));
+
+		mv.addObject("year", year);
 		mv.addObject("datalines", datalines);
 		mv.addObject("dataToday", formatter.format(dataTNY[0]));
 		mv.addObject("percent", dataP+"%");

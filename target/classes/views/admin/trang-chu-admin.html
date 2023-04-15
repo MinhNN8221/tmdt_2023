@@ -8,6 +8,8 @@
    <meta name="description" content="overview &amp; stats" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+
+	<link rel="stylesheet" th:href="@{/css/chart.css}" />
 	<!-- bootstrap & fontawesome -->
 	<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{/assets/font-awesome/4.2.0/css/font-awesome.min.css}" />
@@ -121,11 +123,12 @@
 								  <span class="font-weight-bold">4% more</span> in 2021
 							  </p>
 						  </div>
-						  <div style="margin-left: 240px; margin-top: 15px">
-							  <select>
-								  <option>2023</option>
-								  <option>2022</option>
-							  </select>
+						  <div class="dropdown">
+							  <button class="dropbtn">[[${year}]]</button>
+							  <div class="dropdown-content">
+								  <a th:href="@{/freshfood/admin/trang-chu(id=2023)}" style="text-decoration: none; text-align: center">2023</a>
+								  <a th:href="@{/freshfood/admin/trang-chu(id=2022)}" style="text-decoration: none;text-align :center" >2022</a>
+							  </div>
 						  </div>
 						  <div>
 							  <h6 class="text-capitalize" style="font-size:20px; font-weight: bold; margin-left: 150px; margin-top: 15px; width:200px">Revenue Sources</h6>
@@ -171,10 +174,6 @@
   <!--biều đồ-->
   <script th:src="@{/js/chart/Chart.min.js}"></script>
   <!--   Core JS Files   -->
-<!--  <script th:src="@{/assets/js/core/popper.min.js}"></script>-->
-<!--  <script th:src="@{/assets/js/core/bootstrap.min.js}"></script>-->
-<!--  <script th:src="@{/assets/js/plugins/perfect-scrollbar.min.js}"></script>-->
-<!--  <script th:src="@{/assets/js/plugins/smooth-scrollbar.min.js}"></script>-->
   <script th:src="@{/js/chart/chartjs.min.js}"></script>
   <script>
 	  var ctx1 = document.getElementById("chart-line").getContext("2d");
