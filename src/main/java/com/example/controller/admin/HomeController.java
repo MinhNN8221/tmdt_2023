@@ -2,6 +2,7 @@ package com.example.controller.admin;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,8 +52,24 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/admin/trang-chu", method = RequestMethod.GET)
-	public ModelAndView trangchu() {
+	public ModelAndView trangchu() throws Exception{
 		ModelAndView mv = new ModelAndView("admin/trang-chu-admin");
+		DecimalFormat formatter = new DecimalFormat("#,### đ");
+
+		DecimalFormat df = new DecimalFormat("#.##");
+		SimpleDateFormat smf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		Date start = smf.parse("01/01/"+2023+" 00:00:00");
+		Date end = smf.parse("31/12/"+2023+" 23:59:59");
+		List<Float> datalines=billDetailService.getChartData(start, end);
+		List<Integer> pieData=billDetailService.getPieChartData(start, end);
+
+		float[] dataTNY=billDetailService.getChartDataTNY(start, end);
+		float percent=(dataTNY[0]/dataTNY[1])*100;
+		String dataP=percent>100?"+"+df.format(percent):"-"+df.format(Math.abs(100-percent));
+		mv.addObject("datalines", datalines);
+		mv.addObject("dataToday", formatter.format(dataTNY[0]));
+		mv.addObject("percent", dataP+"%");
+		mv.addObject("datapies", pieData);
 		return mv;
 	}
 	
