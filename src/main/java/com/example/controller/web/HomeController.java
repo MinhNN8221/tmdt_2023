@@ -300,8 +300,7 @@ public class HomeController {
 			products.add(productService.findOneById(billDetail.getPro_id()));
 			products.get(products.size() - 1).setQuantity(billDetail.getQuantity());
 		}
-		System.out.println("hello ");
-		System.out.println("hello " + request.getParameter("id_btn"));
+
 		if (request.getParameter("id") != null) {
 			int id = Integer.valueOf(request.getParameter("id"));
 			billDetails.get(id).setStatus("Đã giao");
@@ -320,9 +319,6 @@ public class HomeController {
 		long tongtien = 0;
 		if(user != null) {
 			cartlist = cartservice.findByUser(user);
-			for(CartItemEntity p: cartlist){
-				System.out.println(p.getProduct().getName());
-			}
 		}else {
 			HttpSession session = request.getSession();
 			Map<Integer, Integer> cart = (Map<Integer, Integer>)session.getAttribute("cart");
