@@ -105,7 +105,7 @@ public class FileExport {
         Chunk sdt2 = new Chunk(billEntity.getTelephone()+"\n\n", font2);
         Chunk email1 = new Chunk("Email: ", font1);
         Chunk email2 = new Chunk(billEntity.getEmail()+"\n\n", font2);
-        Chunk country1 = new Chunk("Quốc gia", font1);
+        Chunk country1 = new Chunk("Quốc gia: ", font1);
         Chunk country2 = new Chunk(billEntity.getCountry()+"\n\n", font2);
         Chunk city1 = new Chunk("Tỉnh/Thành phố: ", font1);
         Chunk city2 = new Chunk(billEntity.getProvince()+"\n\n", font2);

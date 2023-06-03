@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import com.example.config.VNPayService;
 import com.example.entity.BillDetailEntity;
 import com.example.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,8 @@ import com.example.entity.UserEntity;
 @Controller(value = "Controller_Of_Web")
 @RequestMapping("/freshfood")
 public class HomeController {
-	
+	@Autowired
+	private VNPayService vnPayService;
 	@Autowired
 	private InCategoryService category;
 	
@@ -308,5 +310,58 @@ public class HomeController {
 		mv.addObject("productList", products);
 		mv.addObject("bill", billDetails);
 		return mv;
+	}
+
+	@GetMapping ("/submitOrder")
+	public String submidOrder(HttpServletRequest request){
+		UserEntity user = userservice.getLoggingInUsser();
+		List<CartItemEntity> cartlist = new ArrayList<CartItemEntity>();
+
+		long tongtien = 0;
+		if(user != null) {
+			cartlist = cartservice.findByUser(user);
+			for(CartItemEntity p: cartlist){
+				System.out.println(p.getProduct().getName());
+			}
+		}else {
+			HttpSession session = request.getSession();
+			Map<Integer, Integer> cart = (Map<Integer, Integer>)session.getAttribute("cart");
+			if (cart == null) {
+				cart = new LinkedHashMap<Integer, Integer>();
+			}
+			int id = 0;
+			for (Entry<Integer, Integer> item: cart.entrySet()) {
+				CartItemEntity c = new CartItemEntity();
+				c.setProduct(product.findOneById(item.getKey()));
+				c.setQuantity(item.getValue() + cart.get(item.getKey()));
+				c.setUser(user);
+				c.setId(id);
+				cartlist.add(c);
+				id++;
+			}
+		}
+		for (CartItemEntity itemEntity : cartlist){
+			tongtien += itemEntity.getProduct().getPrice() * itemEntity.getQuantity();
+		}
+		String orderInfo="DH"+(int)(Math.random() *1001 + 1);
+		String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+"/freshfood";
+		String vnpayUrl = vnPayService.createOrder(tongtien, orderInfo, baseUrl);
+		return "redirect:" + vnpayUrl;
+	}
+
+	@GetMapping ("/vnpay-payment")
+	public String payment(HttpServletRequest request, Model model){
+		int paymentStatus =vnPayService.orderReturn(request);
+		String orderInfo = request.getParameter("vnp_OrderInfo");
+		String paymentTime = request.getParameter("vnp_PayDate");
+		String transactionId = request.getParameter("vnp_TransactionNo");
+		String totalPrice = request.getParameter("vnp_Amount");
+
+		model.addAttribute("orderId", orderInfo);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("paymentTime", paymentTime);
+		model.addAttribute("transactionId", transactionId);
+
+		return paymentStatus == 1 ? "web/ordersuccess" : "web/orderfail";
 	}
 }
