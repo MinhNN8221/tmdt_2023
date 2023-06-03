@@ -229,7 +229,6 @@ public class HomeController {
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
     public ModelAndView checkout() {
     	ModelAndView mv = new ModelAndView("web/checkout");
-    	//mv.addObject("username", userservice.getLoggingInUsser().getFullname());
     	UserEntity userEntity = userservice.getLoggingInUsser();
     	if (userEntity != null) {
 			mv.addObject("username", userEntity.getFullname());
@@ -280,7 +279,6 @@ public class HomeController {
 			return "redirect:/freshfood/forgot-password?error";
 		}
 		model.addAttribute("token", token);
-		System.out.println(token);
 		return "web/reset-password";
 	}
 
@@ -289,8 +287,6 @@ public class HomeController {
 		String token = request.getParameter("token");
 		String newPassword = request.getParameter("password");
 		userservice.resetPassword(token, newPassword);
-		System.out.println(token);
-		System.out.println(newPassword);
 		return "redirect:/freshfood/dang-nhap?resetSuccess";
 	}
 
