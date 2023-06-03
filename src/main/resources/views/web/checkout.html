@@ -2,151 +2,153 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="_csrf" data-th-content="${_csrf.token}" />
-    <meta name="_csrf_header" data-th-content="${_csrf.headerName}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" rel="stylesheet" th:href="@{/font/fontawesome/css/all.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/base.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/responsive.css}"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <title>Giỏ hàng</title>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="_csrf" data-th-content="${_csrf.token}" />
+   <meta name="_csrf_header" data-th-content="${_csrf.headerName}" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link type="text/css" rel="stylesheet" th:href="@{/font/fontawesome/css/all.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/base.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}"/>
+   <link type="text/css" rel="stylesheet" th:href="@{/css/responsive.css}"/>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <title>Giỏ hàng</title>
 </head>
 <body>
-
-<header th:replace = "fragment::header"></header>
-
-<section class="bread_crumb py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <ul class="breadcrumb">
-                    <li>
-                        <a th:href="@{/freshfood/trang-chu}"><span ><i class="fa fa-home"></i> Trang chủ</span></a>
-                        <span><i class="fa fa-angle-right"></i></span>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"> <span>Giỏ hàng</span></a>
-                        <span><i class="fa fa-angle-right"></i></span>
-                    </li>
-                    <li>
-                        <strong>Khách hàng: [[${username}]]</strong>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section>
-    <section class="page mb-4">
-        <div class="policy d-flex justify-content-around" id="header-service-0" style="background-image: none;">
-            <div class="item-policy d-flex align-items-center">
-                <a href="javascript:void(0)">
-                    <img th:src="@{/image/services/icongiaohang.png}" alt="Miễn phí vận chuyển" class="fa" />
-                </a>
-                <div class="info">
-                    <a href="javascript:void(0)"> Miễn phí vận chuyển</a>
-                    <p>
-                    <p>B&aacute;n k&iacute;nh 5 km</p>
-                    </p>
-                </div>
-            </div>
-            <div class="item-policy d-flex align-items-center">
-                <a href="javascript:void(0)">
-                    <img th:src="@{/image/services/iconsp.png}" alt="Hỗ trợ 24/7" class="fa" />
-                </a>
-                <div class="info">
-                    <a href="javascript:void(0)">Hỗ trợ 24/7</a>
-                    <p>
-                    <p>Hotline:&nbsp;<a href="callto:19001009">035 2399 340</a></p>
-                    </p>
-                </div>
-            </div>
-            <div class="item-policy d-flex align-items-center">
-                <a href="javascript:void(0)">
-                    <img th:src="@{/image/services/iconlmviec.png}" alt="Giờ làm việc" class="fa" />
-                </a>
-                <div class="info">
-                    <a href="javascript:void(0)"> Giờ làm việc</a>
-                    <p>
-                    <p>8:00 - 22:00</p>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $('.header .header-content .header-service').append($('#header-service-0'));
-        </script>
+   
+   <header th:replace = "fragment::header"></header>
+   
+   <section class="bread_crumb py-4">
         <div class="container">
             <div class="row">
-                <div class="clearfix"></div>
                 <div class="col-sm-12">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h3 class="mt-3 mb-4">Giỏ hàng</h3>
-                        <button class="btn btn-primary" data-toggle="tooltip" title data-original-title="Refesh" onclick="loadcartitems()">Refresh</button>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a th:href="@{/freshfood/trang-chu}"><span ><i class="fa fa-home"></i> Trang chủ</span></a>
+                            <span><i class="fa fa-angle-right"></i></span>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"> <span>Giỏ hàng</span></a>
+                            <span><i class="fa fa-angle-right"></i></span>
+                        </li>
+                        <li>
+                            <strong>Khách hàng: [[${username}]]</strong>              
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <section>
+        <section class="page mb-4">   
+            <div class="policy d-flex justify-content-around" id="header-service-0" style="background-image: none;">
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy1-0x0.png}" alt="Miễn phí vận chuyển" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)"> Miễn phí vận chuyển</a>
+                        <p>
+                            <p>B&aacute;n k&iacute;nh 100 km</p>
+                        </p>
                     </div>
-                    <form>
-                        <div class="table-responsive table-cart-content">
-                            <table id="cartitem-table" class="table table-bordered">
-                                <thead>
-                                <tr>
-                                    <td class="text-center"><strong>Ảnh</strong></td>
-                                    <td class="text-center"><strong>Sản phẩm</strong></td>
-                                    <td class="text-center"><strong>Đơn giá</strong></td>
-                                    <td class="text-center"><strong>Số lượng</strong></td>
-                                    <td class="text-center"><strong>Tổng</strong></td>
-                                    <td class="text-center"><strong>Xóa</strong></td>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                    <div class="row">
-                        <div class="col-sm-12 col-lg-4 order-lg-2">
-                            <table id="finalpricetable" class="table table-bordered">
-
-                            </table>
-                        </div>
-                        <div class="col-sm-12 col-lg-8"></div>
+                </div>
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy2-0x0.png}" alt="Hỗ trợ 24/7" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)">Hỗ trợ 24/7</a>
+                        <p>
+                            <p>Hotline:&nbsp;<a href="callto:19001009">0123456789</a></p>
+                        </p>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-sm-6 text-left">
-                            <a href="/freshfood/trang-chu">
-                                Tiếp tục mua hàng
-                            </a>
+                </div>
+                <div class="item-policy d-flex align-items-center">
+                    <a href="javascript:void(0)">
+                        <img th:src="@{/image/services/policy3-0x0.png}" alt="Giờ làm việc" class="fa" />
+                    </a>
+                    <div class="info">
+                        <a href="javascript:void(0)"> Giờ làm việc</a>
+                        <p>
+                            <p>T2 - T7 Giờ h&agrave;nh ch&iacute;nh</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $('.header .header-content .header-service').append($('#header-service-0'));
+            </script>
+            <div class="container">
+                <div class="row">
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12">
+                       <div class="d-flex align-items-center justify-content-between">
+                            <h3 class="mt-3 mb-4">Giỏ hàng</h3>
+                            <button class="btn btn-primary" data-toggle="tooltip" title data-original-title="Refesh" onclick="loadcartitems()">Refresh</button>
                         </div>
-                        <div class="col-sm-6 text-right">
-                            <a href="/freshfood/thanh-toan" class="btn btn-primary">
-                                Tiếp tục
-                            </a>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ...
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
+                       <form>
+                           <div class="table-responsive table-cart-content">
+                               <table id="cartitem-table" class="table table-bordered">
+                                   <thead>
+                                        <tr>
+                                            <td class="text-center"><strong>Ảnh</strong></td>
+                                            <td class="text-center"><strong>Sản phẩm</strong></td>
+                                            <td class="text-center"><strong>Đơn giá</strong></td>
+                                            <td class="text-center"><strong>Số lượng</strong></td>
+                                            <td class="text-center"><strong>Tổng</strong></td>
+                                            <td class="text-center"><strong>Xóa</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                               </table>
+                           </div>          
+                       </form>
+                       <div class="row">
+                            <div class="col-sm-12 col-lg-4 order-lg-2">
+                                <table id="finalpricetable" class="table table-bordered">
+                                     
+                                </table>
+                            </div>
+                            <div class="col-sm-12 col-lg-8"></div>
+                       </div>
+                       <div class="row mt-3">
+                            <div class="col-sm-6 text-left">
+                                <a href="/freshfood/trang-chu">
+                                    Tiếp tục mua hàng
+                                </a>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <th:if
+                                <a href="/freshfood/thanh-toan" class="btn btn-primary">
+                                     Tiếp tục
+                                </a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                             <div class="modal-header">
+                                                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                       <span aria-hidden="true">&times;</span>
+                                                 </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  ...
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                  <button type="button" class="btn btn-primary">Save changes</button>
+                                              </div>
+                                         </div>
                                     </div>
                                 </div>
                             </div>
@@ -154,173 +156,172 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        
+        <section th:replace="fragment::footer-nav"></section>
+        
     </section>
-
-    <section th:replace="fragment::footer-nav"></section>
-
-</section>
-
-<footer th:replace="fragment::footer"></footer>
-
-<script type = "text/javascript">
-    $(document).ready(function(){
-        loadcartitems();
-    });
-
-    function loadcartitems(){
-        $.ajax({
-            url: '/freshfood/cart/all',
-            type: 'get',
-            datatype: 'json',
-            success: function(json){
-                let finalprice = 0;
-                let table = '';
-                for(let i = 0;i<json.length; i++){
-                    finalprice += Number(json[i]['totalprice']);
-                    var html = '<tr cartitem-id="'+json[i]['id']+'">'+
-                        '<td class="text-center">'+
-                        '<img src="'+json[i]['image']+'" title="'+json[i]['name']+'" alt="'+json[i]['name']+'" />'+
-                        '</td>'+
-                        '<td class="text-center">'+
-                        '<a href="javascript:void(0)">'+json[i]['name']+'</a>'+
-                        '</td>'+
-                        '<td class="text-center">'+json[i]['price']+'</td>'+
-                        '<td class="text-left">'+
-                        '<div class="input-group btn-block">'+
-                        '<input class="form-control" type="text" value="'+json[i]['quantity']+'" size="1" />'+
-                        '<span class="input-group-btn">'+
-                        '<button cartitem-id="'+json[i]['id']+'" type="button" data-toggle="tooltip" title class="btn btn-primary update-btn" data-original-title="Cập nhật">'+
-                        '<i class="fa fa-arrow-circle-right"></i>'+
-                        '</button>'+
-                        '</span>'+
-                        '</div>'+
-                        '</td>'+
-                        '<td class="text-right">'+
-                        json[i]['totalprice']+
-                        '</td>'+
-                        '<td class="text-center">'+
-                        '<button type="button" onclick="deletecartitems('+json[i]['id']+')" data-toggle="tooltip" title class="btn btn-danger" data-original-title="Xóa">'+
-                        '<i class="fa fa-times-circle"></i>'+
-                        '</button>'+
-                        '</td>'+
-                        '</tr>';
-                    table+=html;
-                }
-                $('#cartitem-table tbody').html(table);
-                finalpricetable = '<tbody>'+
-                    '<tr>'+
-                    '<td>Thành tiền</td>'+
-                    '<td><strong>'+finalprice+'</strong></td>'+
-                    '</tr>'+
-                    '<tr>'+
-                    '<td>Phí vận chuyển</td>'+
-                    '<td><strong>0</td></strong>'+
-                    '</tr>'+
-                    '<tr>'+
-                    '<td>Tổng cộng</td>'+
-                    '<td><strong>'+finalprice+'</td></strong>'+
-                    '</tr>'+
-                    '</tbody>';
-                $("#finalpricetable").html(finalpricetable);
-
-                //Đoạn code này đặt sau đoạn load dữ liệu lên table
-                //để gắn bộ xử lí sự kiện vào button có class là update-btn
-                //mới đc tạo ra
-                $('button.btn.btn-primary.update-btn').on("click", function(){
-                    val = $(this).parent().parent().find('input').val();
-                    id = $(this).attr('cartitem-id');
-                    updatecartitems(id, val);
-                });
-
-            },
-            error: function(){
-                alert("Không load đơn hàng thành công !");
-            }
-        });
-    };
-
-    function deletecartitems(id){
-        let token = $('meta[name = "_csrf"]').attr('content');
-        let name = $('meta[name = "_csrf_header"]').attr('content');
-        $.ajax({
-            url: '/freshfood/cart/delete/'+id,
-            type: 'delete',
-            dataType: 'json',
-            beforeSend: function(xhr){
-                xhr.setRequestHeader(name,token);
-            },
-            success: function(json){
-                loadcartitems();
-                $('#cart .top-cart-content').load('/freshfood/cartitems ul#cart-slidebar');
-                $('.cartCount2').html('('+json['total']+')');
-                $('.alert').remove();
-                $('.breadcrumb').after('<div class="mt-3 alert alert-success"><strong>'+ json['success'] +'</strong></div>');
-                $('html, body').animate({scrollTop: 0}, 'slow');
-            },
-            error: function(){
-                alert("Không xóa thành công !")
-            }
-        });
-    };
-
-    function updatecartitems(id, val){
-        let token = $('meta[name = "_csrf"]').attr('content');
-        let name = $('meta[name = "_csrf_header"]').attr('content');
-        $.ajax({
-            url: '/freshfood/cart/update/'+id+'/'+val,
-            type: 'put',
-            dataType: 'json',
-            beforeSend: function(xhr){
-                xhr.setRequestHeader(name,token);
-            },
-            success: function(json){
-                loadcartitems();
-                $('.alert').remove();
-                if(json['success']){
-                    $('#cart .top-cart-content').load('/freshfood/cartitems ul#cart-slidebar');
-                    $('.breadcrumb').after('<div class="mt-3 alert alert-success"><strong>'+ json['success'] +'</strong></div>');
-                }
-                if(json['error']){
-                    $('.breadcrumb').after('<div class="mt-3 alert alert-danger"><strong>'+ json['error'] +'</strong></div>');
-                }
-                $('html, body').animate({scrollTop: 0}, 'slow');
-            },
-            error: function(){
-                alert("Không cập nhật thành công !");
-            }
-        });
-    };
-
-    function order(){
-        let ids =$("#cartitem-table tbody tr").map(
-            function(){return $(this).attr('cartitem-id');}
-        ).get();
-        let token = $('meta[name = "_csrf"]').attr('content');
-        let name = $('meta[name = "_csrf_header"]').attr('content');
-        $.ajax({
-            url: '/freshfood/cart/order',
-            contentType: 'application/json',
-            data: JSON.stringify(ids),
-            type: 'post',
-            dataType: 'json',
-            beforeSend: function(xhr){
-                xhr.setRequestHeader(name,token);
-            },
-            success: function(json){
-                alert(json);
-            },
-            error: function(){
-                alert("Fail");
-            }
-        });
-    };
-</script>
-
-<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
-<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/all.js}"></script>
-<script type="text/javascript" th:src="@{/js/index.js}"></script>
-
+   
+   <footer th:replace="fragment::footer"></footer>
+   
+   <script type = "text/javascript">
+       $(document).ready(function(){
+    	   loadcartitems();
+       });
+       
+       function loadcartitems(){
+    	   $.ajax({
+    		   url: '/freshfood/cart/all',
+    		   type: 'get',
+    		   datatype: 'json',
+    		   success: function(json){
+    			   let finalprice = 0;
+    			   let table = '';
+    			   for(let i = 0;i<json.length; i++){
+    				   finalprice += Number(json[i]['totalprice']);
+    				   var html = '<tr cartitem-id="'+json[i]['id']+'">'+
+    				           '<td class="text-center">'+
+    				                '<img src="'+json[i]['image']+'" title="'+json[i]['name']+'" alt="'+json[i]['name']+'" />'+
+    				           '</td>'+
+    				           '<td class="text-center">'+
+    				                '<a href="javascript:void(0)">'+json[i]['name']+'</a>'+
+    				           '</td>'+
+    				           '<td class="text-center">'+json[i]['price']+'</td>'+
+    				           '<td class="text-left">'+
+				                   '<div class="input-group btn-block">'+
+				                       '<input class="form-control" type="text" value="'+json[i]['quantity']+'" size="1" />'+
+				                       '<span class="input-group-btn">'+
+				                            '<button cartitem-id="'+json[i]['id']+'" type="button" data-toggle="tooltip" title class="btn btn-primary update-btn" data-original-title="Cập nhật">'+
+				                                '<i class="fa fa-arrow-circle-right"></i>'+
+				                            '</button>'+
+				                       '</span>'+
+				                   '</div>'+
+				               '</td>'+
+				               '<td class="text-right">'+
+				                    json[i]['totalprice']+
+				               '</td>'+
+				               '<td class="text-center">'+
+				                   '<button type="button" onclick="deletecartitems('+json[i]['id']+')" data-toggle="tooltip" title class="btn btn-danger" data-original-title="Xóa">'+
+				                       '<i class="fa fa-times-circle"></i>'+
+				                   '</button>'+
+				               '</td>'+
+    				        '</tr>';
+    				   table+=html;   
+    			   }
+    			   $('#cartitem-table tbody').html(table);
+    			   finalpricetable = '<tbody>'+
+    			                           '<tr>'+
+    			                              '<td>Thành tiền</td>'+
+    			                              '<td><strong>'+finalprice+'</strong></td>'+
+    			                           '</tr>'+
+    			                           '<tr>'+
+    			                               '<td>Phí vận chuyển</td>'+
+    			                               '<td><strong>0</td></strong>'+
+    			                           '</tr>'+
+    			                           '<tr>'+
+    			                                '<td>Tổng cộng</td>'+
+    			                                '<td><strong>'+finalprice+'</td></strong>'+
+    			                           '</tr>'+
+    			                      '</tbody>';
+    			   $("#finalpricetable").html(finalpricetable);
+    			   
+    			   //Đoạn code này đặt sau đoạn load dữ liệu lên table
+    			   //để gắn bộ xử lí sự kiện vào button có class là update-btn
+    			   //mới đc tạo ra
+    			   $('button.btn.btn-primary.update-btn').on("click", function(){
+		    		   val = $(this).parent().parent().find('input').val();
+    				   id = $(this).attr('cartitem-id');
+		    		   updatecartitems(id, val);
+		    	   });
+    			  
+    		   },
+    		   error: function(){
+    			   alert("Không load đơn hàng thành công !");
+    		   }
+    	   });
+       };
+       
+       function deletecartitems(id){
+    	   let token = $('meta[name = "_csrf"]').attr('content');
+    	   let name = $('meta[name = "_csrf_header"]').attr('content');
+    	   $.ajax({
+    		   url: '/freshfood/cart/delete/'+id,
+    		   type: 'delete',
+    		   dataType: 'json',
+    		   beforeSend: function(xhr){
+    			   xhr.setRequestHeader(name,token);
+    		   },
+    		   success: function(json){
+    			   loadcartitems();
+    			   $('#cart .top-cart-content').load('/freshfood/cartitems ul#cart-slidebar');
+ 		           $('.cartCount2').html('('+json['total']+')');
+ 		           $('.alert').remove();
+		           $('.breadcrumb').after('<div class="mt-3 alert alert-success"><strong>'+ json['success'] +'</strong></div>');
+   		           $('html, body').animate({scrollTop: 0}, 'slow');
+    		   },
+    		   error: function(){
+    			   alert("Không xóa thành công !")
+    		   }
+    	   });
+       };
+       
+       function updatecartitems(id, val){
+    	   let token = $('meta[name = "_csrf"]').attr('content');
+    	   let name = $('meta[name = "_csrf_header"]').attr('content');
+    	   $.ajax({
+    		   url: '/freshfood/cart/update/'+id+'/'+val,
+    		   type: 'put',
+    		   dataType: 'json',
+    		   beforeSend: function(xhr){
+    			   xhr.setRequestHeader(name,token);
+    		   },
+    		   success: function(json){
+    			   loadcartitems();
+    			   $('.alert').remove();
+    			   if(json['success']){
+        			   $('#cart .top-cart-content').load('/freshfood/cartitems ul#cart-slidebar');
+    		           $('.breadcrumb').after('<div class="mt-3 alert alert-success"><strong>'+ json['success'] +'</strong></div>');
+    			   }
+    			   if(json['error']){
+    		           $('.breadcrumb').after('<div class="mt-3 alert alert-danger"><strong>'+ json['error'] +'</strong></div>');
+    			   }
+    			   $('html, body').animate({scrollTop: 0}, 'slow');
+    		   },
+    		   error: function(){
+    			   alert("Không cập nhật thành công !");
+    		   }
+    	   });
+       };
+       
+       function order(){
+    	 let ids =$("#cartitem-table tbody tr").map(
+                      function(){return $(this).attr('cartitem-id');}
+                   ).get();
+    	 let token = $('meta[name = "_csrf"]').attr('content');
+  	     let name = $('meta[name = "_csrf_header"]').attr('content');
+    	 $.ajax({
+    		url: '/freshfood/cart/order',
+	        contentType: 'application/json',
+    		data: JSON.stringify(ids),
+    		type: 'post',
+    		dataType: 'json',
+    		beforeSend: function(xhr){
+ 			   xhr.setRequestHeader(name,token);
+ 		   },
+    		success: function(json){
+    			alert(json);
+    		},
+    		error: function(){
+    			alert("Fail");
+    		}
+    	 });
+       };
+   </script>
+   
+   <script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script> 
+   <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/all.js}"></script>          
+   <script type="text/javascript" th:src="@{/js/index.js}"></script>
+   
 </body>
 </html>
